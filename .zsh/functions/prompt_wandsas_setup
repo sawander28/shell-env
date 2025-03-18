@@ -1,0 +1,60 @@
+#autoload
+
+function prompt_wandsas_help {
+  cat <<'EOF'
+This prompt is color-scheme-able.  You can invoke it thus:
+
+  prompt wandsas [<promptcolor> [<usercolor> [<rootcolor>]]]
+EOF
+}
+
+function prompt_wandsas_setup {
+    zmodload -a zsh/stat zstat
+    zmodload zsh/sched
+    autoload -Uz vcs_info
+    setopt prompt_subst
+
+    local wandsas_prompt=${1:-'blue'}
+    local user_prompt=${2:-'green'}
+    local root_prompt=${3:-'red'}
+    local path_prompt="%B%F{$wandsas_prompt}%1~"
+    local vcs_prompt=${4:-'magenta'}
+
+    local _vcs="%B%F{$vcs_prompt}"'${vcs_info_msg_0_}'
+
+    RPS1="$_vcs%b%f"
+    prompt_opts=(cr subst percent)
+
+    if [[ "${USER}" = "root" ]] {
+        local base_prompt="%B%F{$root_prompt}%m%k "
+    } else {
+        local base_prompt="%B%F{$user_prompt}%n@%m%k "
+    }
+    local post_prompt="%b%f%k"
+
+    typeset -g PS1="$base_prompt$path_prompt %# $post_prompt"
+    typeset -g PS2="$base_prompt$path_prompt %_> $post_prompt"
+    typeset -g PS3="$base_prompt$path_prompt ?# $post_prompt"
+
+    zstyle ':vcs_info:*' enable git svn darcs bzr hg
+    zstyle ':vcs_info:*' stagedstr "%F{green}●$col_vcs"
+    zstyle ':vcs_info:*' unstagedstr "%F{yellow}●$col_vcs"
+    zstyle ':vcs_info:*' check-for-changes true
+    zstyle ':vcs_info:*' formats '(%s)-[%b%u%c]-'
+
+    autoload -U add-zsh-hook
+    add-zsh-hook precmd prompt_wandsas_precmd
+}
+
+function prompt_wandsas_precmd {
+    if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
+        zstyle ':vcs_info:*' formats ' [%b%c%u%B%F{green}]'
+    } else {
+        zstyle ':vcs_info:*' formats ' [%b%c%u%B%F{red}*%F{green}]'
+    }
+    vcs_info
+}
+
+prompt_wandsas_setup "$@"
+
+# vim:fenc=utf-8:ft=zsh:ts=2:sts=0:sw=2:et:
