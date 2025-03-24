@@ -1,14 +1,4 @@
-#
-# $Header: ${HOME}/helpers.bash                         Exp $
-# $Author: (c) 2012-15 -tclover <tokiclover@gmail.com>  Exp $
-# $License: MIT (or 2-clause/new/simplified BSD)        Exp $
-# $Version: 2015/05/15 21:09:26                         Exp $
-#
-
-#
-# @FUNCTION: little helpter to retrieve Kernel Module Parameters
-#
-function mod-info {
+mod-info() {
 	local dir line conf mod{,s} info de null=/dev/null
 
 	if [[ -n "$*" ]]; then
@@ -33,9 +23,10 @@ function mod-info {
 }
 
 #
-# @FUNCTION: colorful helper to retrieve Kernel Module Parameters
+# colorful helper to retrieve Kernel Module Parameters
 #
-function mod-info-color {
+
+mod-info-color(){
 	local line conf dir mod{,s} info null=/dev/null newline='
 '
 	if [[ -n "$*" ]]; then
@@ -80,6 +71,5 @@ function mod-info-color {
 	done
 }
 
-#
-# vim:fenc=utf-8:ft=sh:ci:pi:sts=2:sw=2:ts=2:
-#
+# vim:fenc=utf-8 ft=sh ts=4 sts=4 sw=4 et
+

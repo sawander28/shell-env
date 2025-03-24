@@ -1,21 +1,25 @@
-#
-# $Header: ${HOME}/helpers                                Exp $
-# $Author: (c) 2012-16 tokiclover <tokiclover@gmail.com>  Exp $
-# $License: MIT (or 2-clause/new/simplified BSD)          Exp $
-# $Version: 2016/05/20 21:09:26                           Exp $
-#
+# -*- mode: sh -*-
+
 
 #
-# @FUNCTION: generate a random password using openssl to stdout
+# Tiny little Gentoo system helper functions
 #
+
+
+#
+# generate a random password using openssl to stdout
+#
+
 function genpwd {
 	openssl rand -base64 48
 }
 
+
 #
 # Mount/fstab info helper
 #
-function mount-info {
+
+mount-info(){
 	local arg args fs src opts opt ret
 
 	src=/proc/mounts
@@ -56,7 +60,8 @@ function mount-info {
 #
 # Simple xev key code
 #
-function xev-key-code {
+
+xev-key-code(){
 	xev | grep -A2 --line-buffered '^KeyRelease' | \
 	sed -nre '/keycode /s/^.*keycode ([0-9]*).* (.*, (.*)).*$/\1 \2/p'
 }
@@ -66,7 +71,7 @@ function xev-key-code {
 # paste function to http://sprunge.us
 #
 
-function sprunge {
+sprunge(){
 	case "${1}" in
 		(''|-) curl -F 'sprunge=<-' http://sprunge.us;;
 		(*)
@@ -81,9 +86,9 @@ function sprunge {
 
 
 #
-# Gentoo html search query
+# html search query
 #
-function pkg-search {
+pkg-search(){
 	local url="http://gentoo.zapto.org/packages/search?description"
 	case "${1}" in
 		([a-zA-Z]*) curl -s "${url}=${1}" | html2text -nobs \
@@ -92,5 +97,82 @@ function pkg-search {
 	esac
 }
 
+#
+# Collect info about running kernel modules
+# 
 
-# vim: fenc=utf-8 ft=sh ts=4 sts=4 sw=4 et
+mod-info(){
+	local dir line conf mod{,s} info de null=/dev/null
+
+	if [[ -n "$*" ]]; then
+		mods=($*)
+	else
+		while read line; do
+			mods+=( ${line%% *})
+		done </proc/modules
+	fi
+	for mod in "${mods[@]}"; do
+		dir=/sys/module/$mod/parameters
+		[[ -d $dir ]] || continue
+		info="$(modinfo -d $mod 2>$null)"
+		echo -e "$mod${color[default]} :$(echo "$info" | tr '\n' '\t')"
+
+		pushd $dir >$null 2>&1
+		for conf in *; do
+			echo -e "\t$conf=$(< $conf 2>$null) -$(echo "$info" | sed "/^$conf/s/^$conf=//" 2>$null)"
+		done
+		popd >$null 2>&1
+	done
+}
+
+#
+# colorful helper to retrieve Kernel Module Parameters
+#
+
+mod-info-color(){
+	local line conf dir mod{,s} info null=/dev/null newline='
+'
+	if [[ -n "$*" ]]; then
+		mods=($*)
+	else
+		while read line; do
+			mods+=( ${line%% *})
+		done </proc/modules
+	fi
+	for mod in ${mods[@]}; do
+		dir=/sys/module/$mod/parameters
+		[[ -d $dir ]] || continue
+		info="$(modinfo -d $mod 2>$null | tr '\n' '\t')"
+		echo -en "${fg[2]}$mod${color[none]}"
+		(( ${#info} >= 0 )) && echo -e " - $info"
+
+		declare -a names descs vals
+		local add_desc=false desc name IFS="$newline"
+		
+		while read line; do
+			if [[ "$line" =~ ^[[:space:]] ]]; then
+				desc+="$newline	$line"
+			else
+				$add_desc && descs+=("$desc")
+				name="${line%%:*}"
+				names+=("$name")
+				desc=("	${line#*:}")
+				vals+=("$(< $dir/$name 2>$null)")
+			fi
+			add_desc=true
+		done < <(modinfo -p $mod 2>$null)
+		
+		$add_desc && descs+=("$desc")
+		for (( i=0; i<${#names[@]}; i++ )); do
+			(( "${#names[i]}" > 0 )) || continue
+			printf "\t${fg[6]}%s${color[none]} = ${fg[3]}%s${color[none]}\n%s\n" \
+			${names[i]} \
+			"${vals[i]}" \
+			"${descs[i]}"
+		done
+		echo
+	done
+}
+
+# vim:fenc=utf-8 ft=sh ts=4 sts=4 sw=4 et
+
