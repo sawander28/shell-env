@@ -1,0 +1,177 @@
+set nocompatible
+filetype off
+
+if empty($XDG_CACHE_HOME)
+	let $XDG_CACHE_HOME = fnamemodify("~/.cache", ":p:h")
+endif
+if empty($XDG_CONFIG_HOME)
+	let $XDG_CONFIG_HOME = fnamemodify("~/.config", ":p:h")
+endif
+
+" ============================================================================
+" Basic settings
+" ============================================================================
+
+set tabstop=2
+set shiftwidth=2
+set shiftwidth=2
+set expandtab
+
+set autoread                " automatically read changed files
+set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+
+syntax on
+"sil! colorscheme shblah     " default colorscheme
+"sil! colorscheme Tomorrow-Night-Bright
+sil! colorscheme industry
+
+" interface
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set vb t_vb=                " disable beep
+set timeoutlen=500          " time to wait for key code, mapped key sequence
+
+" search
+set incsearch               " match search while typing
+set hlsearch                " hightligt search results
+set smartcase               " search casesensitive if pattern contains uppercase chars
+set ignorecase              " overwritten by smartcase if it contains uppercase chars
+
+" compelete
+set complete-=i
+set completeopt=menuone,longest
+
+" ignore
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.db,*.o,*.a
+
+" directories
+if !isdirectory($XDG_CACHE_HOME . "/vim/undo")
+	call mkdir($XDG_CACHE_HOME . "/vim/undo", "p")
+endif
+set undodir=$XDG_CACHE_HOME/vim/undo//
+
+if !isdirectory($XDG_CACHE_HOME . "/vim/backup")
+	call mkdir($XDG_CACHE_HOME . "/vim/backup", "p")
+endif
+set backupdir=$XDG_CACHE_HOME/vim/backup//
+
+if !isdirectory($XDG_CACHE_HOME . "/vim/swp")
+	call mkdir($XDG_CACHE_HOME . "/vim/swp", "p")
+endif
+set directory=$XDG_CACHE_HOME/vim/swp//
+
+let g:netrw_home=expand("$XDG_CACHE_HOME/vim")
+
+" histroy/undo
+set history=1000            " store a ton of history (default is 20)
+set undofile                " So is persistent undo ...
+set undolevels=1000         " Maximum number of changes that can be undone
+
+" Formating
+set backspace=indent,eol,start
+filetype plugin indent on
+set autoindent
+set smartindent
+set smarttab
+set foldlevelstart=99
+
+" ============================================================================
+" MAPPINGS
+" ============================================================================
+
+let mapleader      = ','
+let maplocalleader = ','
+
+" w!! to write with doas/sudo
+if executable('doas')
+	cmap w!! w !doas tee % >/dev/null
+else
+	cmap w!! w !sudo tee % >/dev/null
+endif
+
+map Q gq        " don't use Ex mode, use Q for formatting
+command! W w    " too often i type W instead of w
+nnoremap Y y$   " Make Y behave like other capitals
+nnoremap Q @q   " qq to record, Q to replay
+
+" Reselect visual block after indent/outdent
+noremap < <gv
+vnoremap > >gv
+vnoremap = =gv
+
+" ,s - reload vim rc
+nmap <leader>s :source $MYVIMRC<cr>
+
+" ,c - toggle comment
+nmap <leader>c <plug>Commentary
+vmap <leader>c <plug>Commentary
+
+" ctrlp plugin on-demand loading
+" map <c-p> <plug>(ctrlp)
+" let g:ctrlp_map = ''
+
+function! FzyCommand(choice_command, vim_command)
+	try
+		let output = system(a:choice_command . " | fzy ")
+	catch /Vim:Interrupt/
+		" Swallow errors from ^C, allow redraw! below
+	endtry
+	redraw!
+	if v:shell_error == 0 && !empty(output)
+		exec a:vim_command . ' ' . output
+	endif
+endfunction
+
+let lrigdir = "name =~ \"(\.git|\.hg|CVS)\""
+let lrigfil = "name =~ \"\.(so|swp|tar|gz|zip|db|o|a)$\""
+let lrfile = printf("lr -Ut 'type == f && ! %s || %s && prune'", lrigfil, lrigdir)
+let lrdirs = printf("lr -Ut 'type == d && !(%s && !prune)'", lrigdir)
+nnoremap <c-p>p :call FzyCommand(lrfile, ':e')<cr>
+nnoremap <c-p>d :call FzyCommand(lrdirs, ':e')<cr>
+
+" ----------------------------------------------------------------------------
+" Enable Omni completion when opening a file only if a specific plugin does
+" not already exist for that filetype. This allows Omni completion
+" (Ctrl-x/Ctrl-o) to work with any programming language if and only if a syntax
+" file exists for the said language.
+" ----------------------------------------------------------------------------
+if exists("+omnifunc")
+   autocmd Filetype *
+        \ if &omnifunc == "" |
+        \   setlocal omnifunc=syntaxcomplete#Complete |
+        \ endif
+endif
+" ----------------------------------------------------------------------------
+" co? : Toggle options (inspired by unimpaired.vim) from: https://github.com/junegunn/dotfiles
+" ----------------------------------------------------------------------------
+fu! s:map_change_option(...)
+	let [key, opt] = a:000[0:1]
+	let op = get(a:, 3, 'set '.opt.'!')
+	execute printf("nnoremap <silent> co%s :%s<bar>echo '%s: '. &%s<cr>", key, op, opt, opt)
+endf
+
+call s:map_change_option('c', 'spell', 'setlocal spell!')
+call s:map_change_option('n', 'number', 'setlocal number!')
+call s:map_change_option('h', 'hlsearch', 'setlocal hlsearch!')
+call s:map_change_option('l', 'list', 'setlocal list!')
+call s:map_change_option('p', 'paste')
+call s:map_change_option('s', 'syntax',
+	\ 'if exists("g:syntax_on")<bar>syntax off<bar>else<bar>syntax enable<bar>endif<bar>redraw')
+call s:map_change_option('t', 'textwidth',
+\ 'let &l:textwidth = input("textwidth (". &l:textwidth ."): ")<bar>redraw')
+call s:map_change_option('w', 'wrap', 'setlocal wrap!')
+call s:map_change_option('m', 'colorcolumn',
+\ 'let &l:colorcolumn = input("colorcolumn (". &l:colorcolumn ."): ")<bar>redraw')
+
+" ============================================================================
+" FILETYPES
+" ============================================================================
+
+" void-packages template file
+autocmd BufNewFile,BufRead template set ft=sh sts=0 sw=0 noet
+
+" dont indent case in switch
+set cinoptions+=:0
+
+if filereadable("~/.vimrc.local")
+  source ~/.vimrc.local
+endif
