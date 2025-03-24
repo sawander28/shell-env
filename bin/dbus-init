@@ -1,0 +1,2 @@
+#!/bin/sh
+dbus-daemon --session --nopidfile --nofork --address=unix:path=/run/user/1000/bus

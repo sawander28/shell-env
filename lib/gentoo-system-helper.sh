@@ -1,0 +1,96 @@
+#
+# $Header: ${HOME}/helpers                                Exp $
+# $Author: (c) 2012-16 tokiclover <tokiclover@gmail.com>  Exp $
+# $License: MIT (or 2-clause/new/simplified BSD)          Exp $
+# $Version: 2016/05/20 21:09:26                           Exp $
+#
+
+#
+# @FUNCTION: generate a random password using openssl to stdout
+#
+function genpwd {
+	openssl rand -base64 48
+}
+
+#
+# Mount/fstab info helper
+#
+function mount-info {
+	local arg args fs src opts opt ret
+
+	src=/proc/mounts
+	args="$(getopt -o F:fo: -l fstab,fsys:,options: -n mount-info -s sh -- "${@}")"
+	eval set -- ${args}
+
+	while true; do
+	case "${1}" in
+		(-f|--fstab) src=/etc/fstab;;
+		(-F|--fsys*) fs="${2}"; shift;;
+		(-o|--options) opts="${2}"; shift;;
+		(*) shift; break;;
+	esac
+	shift
+	done
+
+	arg="${1}"
+	eval set -- $(sed -nre "s|(^[^#].*${1}[[:space:]].*${fs})[[:space:]].*$|\1|p" ${src})
+	[ -z "${1}" ] && return 1
+
+	if [ -n "${opts}" ]; then
+		local IFS="${IFS},"
+		for opt in ${opts}; do
+			case "${opt}" in
+				(*${4}*)  ;;
+				(*) return 1;;
+			esac
+		done
+	fi
+
+	case "${arg}" in
+		(${1}|${2}) return 0;;
+	esac
+	return 1
+}
+
+
+#
+# Simple xev key code
+#
+function xev-key-code {
+	xev | grep -A2 --line-buffered '^KeyRelease' | \
+	sed -nre '/keycode /s/^.*keycode ([0-9]*).* (.*, (.*)).*$/\1 \2/p'
+}
+
+
+#
+# paste function to http://sprunge.us
+#
+
+function sprunge {
+	case "${1}" in
+		(''|-) curl -F 'sprunge=<-' http://sprunge.us;;
+		(*)
+		local arg
+		for arg; do
+			[ -f "${arg}" ] || continue
+			pr-info "Pasting... ${arg}"
+			curl -F 'sprunge=<-' http://sprunge.us < "${arg}"
+		done;;
+	esac
+}
+
+
+#
+# Gentoo html search query
+#
+function pkg-search {
+	local url="http://gentoo.zapto.org/packages/search?description"
+	case "${1}" in
+		([a-zA-Z]*) curl -s "${url}=${1}" | html2text -nobs \
+			| awk '/results for query/ { i=1 }; (i && $1 != "[Home]") { print }'
+		;;
+	esac
+}
+
+
+# vim: fenc=utf-8 ft=sh ts=4 sts=4 sw=4 et

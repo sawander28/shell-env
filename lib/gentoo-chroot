@@ -1,0 +1,36 @@
+#!/bin/sh
+
+#
+# Setup chroot for gentoo efistub boot
+#
+
+: ${CHROOT:=$1}
+: ${SHELL:=$2}
+
+zpool import -N -R ${CHROOT:-/mnt} zdev
+zfs load-key zdev
+zfs mount zdev/ROOT/gentoo
+
+[ -d ${CHROOT}/boot/efi ] || mkdir -p ${CHROOT}/boot/efi
+mount LABEL=EFI ${CHROOT}/boot/efi
+
+mount --types proc /proc ${CHROOT}/proc
+
+mount --rbind /sys ${CHROOT}/sys
+mount --make-rslave ${CHROOT}/sys
+
+mount --rbind /dev ${CHROOT}/dev
+mount --make-rslave ${CHROOT}/dev
+
+
+#
+# ENTRY POINT CHROOT
+#
+
+printf "\033[1m=> Entering chroot ${CHROOT}\033[m\n"; }
+chroot ${CHROOT} ${SHELL:=/bin/bash}
+
+
+source /etc/profile
+export PS1="(chroot) ${PS1}"
+

@@ -1,0 +1,4 @@
+
+LESS="-R -M"
+LESSHISTFILE="${XDG_CACHE_HOME}/history/less"
+LESSOPEN=""

@@ -1,0 +1,39 @@
+#!/bin/sh
+
+envdir="${XDG_RUNTIME_DIR}/env"
+
+if [ -d "$envdir" ]; then
+  rm -f "$envdir/*"
+  printf "wenv updated\n"
+else
+  mkdir -p "$envdir"
+  echo "wenv created\n"
+fi
+
+echo $XDG_RUNTIME_DIR > ${envdir}/XDG_RUNTIME_DIR
+echo $envdir > $envdir/envdir
+
+#echo $XDG_CONFIG_HOME > ${envdir}/XDG_CONFIG_HOME
+#echo $XDG_DATA_HOME  > ${envdir}/XDG_DATA_HOME
+#echo $XDG_CACHE_HOME   > ${envdir}/XDG_CACHE_HOME
+
+echo $XDG_SESSION_DESKTOP > ${envdir}/XDG_CURRENT_DESKTOP
+echo $XDG_SESSION_TYPE > ${envdir}/XDG_SESSION_TYPE
+
+#echo $XCURSOR_NAME > ${envdir}/XCURSOR_NAME
+#echo $XCURSOR_SIZE > ${envdir}/XCURSOR_SIZE
+
+echo $LANG > ${envdir}/LANG
+echo $LC_COLLATE > ${envdir}/LC_COLLATE
+#echo $BROWSER > ${envdir}/BROWSER
+#echo $EDITOR > ${envdir}/EDITOR
+#echo $PAGER > ${envdir}/PAGER
+#echo $VISUAL > ${envdir}/VISUAL
+
+echo $GPG_AGENT_INFO > ${envdir}/GPG_AGENT_INFO
+echo $SSH_AUTH_SOCK > ${envdir}/SSH_AUTH_SOCK
+
+echo $WAYLAND_DISPLAY > ${envdir}/WAYLAND_DISPLAY
+echo $DISPLAY > ${envdir}/DISPLAY
+echo $SWAYSOCK > ${envdir}/SWAYSOCK
+echo $I3SOCK > ${envdir}/I3SOCK

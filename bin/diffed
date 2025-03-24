@@ -1,0 +1,110 @@
+#!/bin/sh
+# diffed [-CHT] [-pN|-a|-P PREFIX] [-s SUBST -r REPL] [-x EXCLUDE] - filter for unified diffs 
+#
+#   -C		       remove all non-diff lines
+#   -H		       remove diff headers
+#   -T		       remove file timestamps
+#   -p N	       strip N levels of directories from file names
+#   -a                 add a/ b/ to file names
+#   -P                 add PREFIX to file names
+#   -s SUBST -r REPL   replace regexp SUBST with REPL in filenames
+#   -x EXCLUDE	       exclude diffs touching files matching regexp EXCLUDE
+#
+# To the extent possible under law, Leah Neukirchen has waived
+# all copyright and related or neighboring rights to this work.
+# http://creativecommons.org/publicdomain/zero/1.0/
+#
+# 05may2016:: don't modify /dev/null path
+# 09sep2016:: known bug: lines which remove -- or add ++ are regarded
+#             as new diffs
+# 16jan2018:: add -a, -P
+
+striptime=0
+stripheader=0
+stripprefix=0
+addprefix=0
+clean=0
+subst=
+repl=
+exclude=
+nl='
+'
+
+while getopts CHTap:P:s:r:x: name
+do
+	case $name in
+	C)	clean=1;;
+	H)	stripheader=1;;
+	T)	striptime=1;;
+	a)	addprefix=-;;
+	P)	addprefix=${OPTARG%/};;
+	p)	stripprefix=$((0+OPTARG));;
+	s)	subst=$OPTARG;;
+	r)	repl=$OPTARG;;
+	x)	exclude="$exclude$nl$OPTARG";;
+	?)	printf "Usage: %s: [-CHT] [-pN] [-s SUBST -r REPL] [-x EXCLUDE]\n" $0 1>&2
+		exit 1;;
+	esac
+done
+
+exec awk -v "striptime=$striptime" \
+	 -v "stripheader=$stripheader" \
+	 -v "stripprefix=$stripprefix" \
+	 -v "addprefix=$addprefix" \
+	 -v "subst=$subst" \
+	 -v "repl=$repl" \
+	 -v "excludes=$exclude" \
+	 -v "clean=$clean" '
+BEGIN {
+	excludes = substr(excludes, 2)
+	split(excludes, exclude, "\n");
+}
+
+inpatch && /^[^ +-@]/ { inpatch = 0; strippatch = 0 }
+
+/^diff |^Index: / { if (!inheader) header = $0; inheader = 1; next }
+
+/^--- |\+\+\+ / {
+	inheader = 0
+	inpatch = 1
+	s = substr($0, 1, 4)
+	f = substr($0, 5)
+	t = ""
+	if (i = index(f, "\t")) {
+		t = substr(f, i)
+		f = substr(f, 0, i-1)
+	}
+	if (striptime)
+		t = ""
+	if (f != "/dev/null")
+		for (i = 0; i < stripprefix; i++)
+			sub("[^/]*\\/", "", f)
+	if (subst && repl)
+		gsub(subst, repl, f)
+	if (addprefix == "-") {
+		if (index($0, "---") == 1)
+			f = "a/" f;
+		else
+			f = "b/" f;
+	} else if (addprefix) {
+		f = addprefix "/" f;
+	}
+	$0 = s f t
+	for (e in exclude)
+		if (match(f, exclude[e]))
+			strippatch = 1
+	if (!strippatch) {
+		if (header && !stripheader)
+			print header
+		print $0
+	}
+	header = ""
+	next
+}
+
+inheader { header = header "\n" $0; next }
+inpatch && strippatch { next }
+inpatch { print; next }
+
+!clean { print }
+'
