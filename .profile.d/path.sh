@@ -16,7 +16,7 @@ prependpath "/usr/local/lobase/sbin"
 prependpath "/usr/local/lobase/bin"
 prependpath "/usr/local/sbin"
 prependpath "/usr/local/bin"
-prependpath "$[GOPATH}/bin"
+prependpath "${GOPATH}/bin"
 prependpath "${HOME}/bin"
 unset prependpath
 export PATH

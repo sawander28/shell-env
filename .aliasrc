@@ -1,7 +1,7 @@
 # -*- mode: sh -*-
 
 alias tmux='tmux -S ${XDG_RUNTIME_DIR}/tmux.default'
-alias tmre=''
+alias tmls='tmux list-sessions'
 
 alias gcd='cd $(git rev-parse --show-toplevel)'
 alias ga='git add .'
@@ -22,7 +22,7 @@ alias ....='cd ../../..'
 alias pu=pushd
 alias po=popd
 
-alias ls='ls --color=auto'
+alias ls='/usr/bin/ls --color=auto'
 alias ip='ip --color=auto'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
@@ -30,6 +30,10 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+alias ll='ls -lh'
+alias la='ls -a'
+alias  l='ls -lha'
+alias l.='ls -d .*'
 alias lsd='ls -d *$@*'
 alias lad='ls -Ad .*$@*'
 alias lsa='ls -Ad .*$@*'
@@ -47,4 +51,7 @@ alias le=less
 alias hl='history | less'
 alias ct='tar -cvpf'
 alias xt='tar -xvpf'
-
+alias df='df -h'
+alias free='free -h'
+alias ds='du -sh'
+alias res='cd ~ && tput clear'
