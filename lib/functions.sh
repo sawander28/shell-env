@@ -1,17 +1,50 @@
 # -*- mode sh -*-
 
 
-#
 # Common little POSIX helper functions adapted from Void Linux runit init-scripts
-#
+
+# ANSI escape sequences
+
+escape='\033[%sm'
+endc='escape % 0'
+
+reset='\033[0m'         # Reset
+bold='1'
+italic='3'
+underline='4'
+blink='5'
+fastblink='6'
+
+# Regular
+black='\033[0;30m'      # Black
+red='\033[0;31m'        # Red
+green='\033[0;32m'      # Green
+yellow='\033[0;33m'     # Yellow
+blue='\033[0;34m'       # Blue
+purple='\033[0;35m'     # Purple
+cyan='\033[0;36m'       # Cyan
+white='\033[0;37m'      # White
+
+# Bold
+boblack='\033[1;30m'    # Black
+bored='\033[1;31m'      # Red
+bogreen='\033[1;32m'    # Green
+boyellow='\033[1;33m'   # Yellow
+boblue='\033[1;34m'     # Blue
+bopurple='\033[1;35m'   # Purple
+bocyan='\033[1;36m'     # Cyan
+bowhite='\033[1;37m'    # White
 
 
 #
-# Tiny logger
+# Tiny lightweight logger
 #
 
 # MSG bold/white
 msg(){ printf "\033[1m=> $@\033[m\n"; }
+
+# INFO bold/yellow
+info(){ printf "\033[1m\033[33m=> $@\033[m\n"; }
 
 # OK bold/green
 ok(){ printf "\033[1m\033[32m OK\033[m\n"; }
@@ -25,7 +58,6 @@ error(){ printf "\033[1m\033[31mERROR: $@\033[m\n"; }
 
 #
 # Starting emergency shell
-#
 
 emergency_shell(){
     echo
@@ -35,9 +67,7 @@ emergency_shell(){
 }
 
 
-#
 # Check if system is running in container or vm
-#
 
 detect_container(){
     # LXC, podman
@@ -49,9 +79,7 @@ detect_container(){
 }
 
 
-#
 # Deactivate LVM2 volume group
-#
 
 deactivate_vgs(){
     _group=${1:-All}
@@ -65,9 +93,7 @@ deactivate_vgs(){
 }
 
 
-#
 # Deactivate dm-crypt volume
-#
 
 deactivate_crypt(){
     if [ -x /sbin/dmsetup -o -x /bin/dmsetup ]; then
@@ -81,5 +107,18 @@ deactivate_crypt(){
             deactivate_vgs "Crypt"
     fi
 }
+
+
+yesno(){
+	case "${1:-NO}" in
+	(0|[Dd][Ii][Ss][Aa][Bb][Ll][Ee]|[Oo][Ff][Ff]|[Ff][Aa][Ll][Ss][Ee]|[Nn][Oo])
+		return 1;;
+	(1|[Ee][Nn][Aa][Bb][Ll][Ee]|[Oo][Nn]|[Tt][Rr][Uu][Ee]|[Yy][Ee][Ss])
+		return 0;;
+	(*)
+		return 2;;
+	esac
+}
+
 
 # vim:fenc=utf8 ft=sh ts=4 sts=4 sw=4 et

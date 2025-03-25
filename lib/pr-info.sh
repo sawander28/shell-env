@@ -1,9 +1,7 @@
 # -*- mode: sh -*-
 
 
-#
 # Setup a few environment variables for pr-*() helper family
-#
 
 typeset -A print_info
 print_info[cols]="${COLUMNS:=$(tput cols)}"
@@ -12,8 +10,8 @@ print_info[cols]="${COLUMNS:=$(tput cols)}"
 # and this keep updating print_info[cols]
 trap 'print_info[cols]="${COLUMNS:=$(tput cols)}"' WINCH
 
-#
-# @FUNCTION: Print error message to stderr
+
+# Print error message to stderr
 #
 pr-error()
 {
@@ -21,9 +19,9 @@ pr-error()
 	echo -e${print_info[eol]+n} "${print_info[eol]}${color[bold]}${fg[1]}ERROR:${color[none]}${PFX} ${@}" >&2
 }
 
-#
+
 # @FUNCTION: Print error message to stderr & exit
-#
+
 die()
 {
 	local ret=${?}; pr-error "${@}"; return ${ret}
@@ -60,7 +58,7 @@ pr-begin()
 }
 
 #
-# @FUNCTION: Print end message to stdout
+# Print end message to stdout
 #
 pr-end()
 {
@@ -75,9 +73,9 @@ pr-end()
 	print_info[eol]= print_info[len]=0
 }
 
-#
-# @FUNCTION: YES or NO helper
-#
+
+# YES or NO helper
+
 yesno()
 {
 	case "${1:-NO}" in
@@ -91,7 +89,7 @@ yesno()
 }
 
 #
-# @FUNCTION: Colors handler
+# Colors handler
 #
 eval_colors()
 {

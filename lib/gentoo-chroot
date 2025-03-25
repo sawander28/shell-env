@@ -6,21 +6,21 @@
 
 : ${CHROOT:=$1}
 : ${SHELL:=$2}
+: ${ZPOOL:=$3}
+: ${ROOTFS:=$4}
 
-zpool import -N -R ${CHROOT:-/mnt} zdev
-zfs load-key zdev
-zfs mount zdev/ROOT/gentoo
+zpool import -N -R ${CHROOT=-/mnt} ${ZPOOL=:zroot}
+zfs load-key ${ZPOOL}
+zfs mount ${ZPOOL}/ROOT/${ROOTFS=-gentoo}
 
 [ -d ${CHROOT}/boot/efi ] || mkdir -p ${CHROOT}/boot/efi
 mount LABEL=EFI ${CHROOT}/boot/efi
 
-mount --types proc /proc ${CHROOT}/proc
-
-mount --rbind /sys ${CHROOT}/sys
-mount --make-rslave ${CHROOT}/sys
-
-mount --rbind /dev ${CHROOT}/dev
-mount --make-rslave ${CHROOT}/dev
+mount --types proc "/proc ${CHROOT}/proc"
+mount --rbind /sys "${CHROOT}/sys"
+mount --make-rslave "${CHROOT}/sys"
+mount --rbind /dev "${CHROOT}/dev"
+mount --make-rslave "${CHROOT}/dev"
 
 
 #

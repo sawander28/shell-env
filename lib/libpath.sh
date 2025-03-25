@@ -1,9 +1,11 @@
 # -*- mode: sh -*-
 
+#
+# Some convenient path functions
+#
 
-#
+
 # Add element as first in PATH
-#
 
 prependpath(){
   case ":$PATH:" in
@@ -26,9 +28,7 @@ prependpath(){
 # export PATH
 
 
-#
 # Add element as last element to PATH
-#
 
 appendpath(){
   case ":${PATH}:" in
@@ -38,9 +38,7 @@ appendpath(){
 }
 
 
-#
 # Initial my-user's  PATH
-#
 
 initpath(){
 for x in \
@@ -62,16 +60,14 @@ done
 }
 
 
-#
 # Initialize minimal PATH
-#
 
 minpath(){
 for x in \
 	"$HOME/bin" \
 	"$HOME/.local/bin" \
 	"/usr/local/sbin" \
-  "/usr/local/bin" \
+    "/usr/local/bin" \
 	"/usr/bin" \
 	; do
 	[ -d "$x" ] || continue
@@ -83,13 +79,10 @@ done
 }
 
 
-#
 # Initialize default PATH
-#
 
 defaultpath(){
   export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 }
-
 
 # vim: fenc=utf-8 ft=sh ts=4 sts=4 sw=4
