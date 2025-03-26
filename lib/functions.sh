@@ -1,12 +1,10 @@
 # -*- mode sh -*-
 
+# Common little helper functions adapted from Void Linux runit init-scripts
 
-# Common little POSIX helper functions adapted from Void Linux runit init-scripts
-
+#
 # ANSI escape sequences
-
-escape='\033[%sm'
-endc='escape % 0'
+#
 
 reset='\033[0m'         # Reset
 bold='1'
@@ -121,4 +119,4 @@ yesno(){
 }
 
 
-# vim:fenc=utf8 ft=sh ts=4 sts=4 sw=4 et
+# vim: fenc=utf8 ft=sh ts=4 sts=4 sw=4 et

@@ -1,6 +1,7 @@
 #autoload
 
 # Skip httpheader
+
 function skip_httpheader {
    for i in {1..7} ; do
 	  read -u $REPLY LINE;

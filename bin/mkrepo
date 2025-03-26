@@ -1,56 +1,60 @@
 #!/bin/sh
 
-name="${0##*/}"
-GIT_UPSTREAM_HOST=git@rpi3.local
-GIT_UPSTREAM_ROOT=${GIT_UPSTREAM_HOST}:repos
-GIT_UPSTREAM_BASEDIR=/home/git/repos
+GIT_USER="git"
+GIT_HOST="rpi3.local"
+GIT_ROOT="/home/git/repos"
+GIT_UPSTREAM="ssh://${GIT_USER}@${GIT_HOST}/${GIT_ROOT##*/}"
 
+GIT_MYREPO="${HOME}/repos"
+REPO_ROOT="/home/wandsas/repos"
+REPO_OWNER="wandsas"
+REPO_OWNER_NAME="Sascha Wander <wandsas>"
+REPO_OWNER_MAIL="<sascha.wander@onionmail.com>"
 REPO_BASEDIR="${PWD}"
 REPO_NAME="${1}.git"
-REPO_DESC="${2}"
+REPO_DESCRIPTION="${2}"
 
-msg() { printf "\033[1m=> $@\033[m\n"; }
+info() { printf "\033[1m=> $@\033[m\n"; }
 
-msg_err() { printf "\033[1m\033[31mERROR: $@\033[m\n"; }
+error() { printf "\033[1m\033[31mERROR: $@\033[m\n"; }
 
 
-if [ "$#" -ne 2 ] || [ -z "${REPO_DESC}" ]; then
-  msg_err "Usage: ${name} <repo> <description>";
+if [ "$#" -ne 2 ] || [ -z "${REPO_DESCRIPTION}" ]; then
+  error "Usage: ${name} <REPO_NAME> <REPO_DESCIPTION>";
   exit 17;
 fi
 
-ssh -t ${GIT_UPSTREAM_HOST} test -d "${GIT_UPSTREAM_BASEDIR}/${REPO_NAME}"
+ssh -t ${GIT_HOST} test -d "${GIT_ROOT}/${REPO_NAME}"
 STATUS=$?
 if [ $STATUS -eq 0 ]; then
-  msg_err "Repository $REPO_NAME already exist on remote ${GIT_UPSTREAM_ROOT}"
+  error "Repository $REPO_NAME already exist on remote ${GIT_ROOT}"
   exit $STATUS
 fi
 
 
-msg "Basedir: $REPO_BASEDIR"
-msg "Repo: $REPO_NAME"
-msg "Description: $REPO_DESC"
+info "git root: $GIT_ROOT"
+info "repo name: $REPO_NAME"
+info "Description: $REPO_DESCRIPTION"
 
-ssh -t ${GIT_UPSTREAM_HOST} "mkdir -p ${GIT_UPSTREAM_BASEDIR}/${REPO_NAME} && git --bare init ${GIT_UPSTREAM_BASEDIR}/${REPO_NAME} && echo ${REPO_DESC} > ${GIT_UPSTREAM_BASEDIR}/${REPO_NAME}/description"
+ssh -t "${GIT_USER}@${GIT_HOST}" "mkdir -p "${GIT_ROOT}/${REPO_NAME}" && git --bare init "${GIT_ROOT}/${REPO_NAME}" && echo ${REPO_DESCRIPTION} > ${GIT_ROOT}/${REPO_NAME}/description"
 STATUS=$?
 if [ $STATUS -ne 0 ]; then
-  msg_err "Creating repository $REPO_NAME on remote ${GIT_UPSTREAM_ROOT} failed"
+  error "Creating repository $REPO_NAME on remote ${GIT_ROOT} failed"
   exit $STATUS
 else
-  msg "Created repository $REPO_NAME on remote  ${GIT_UPSTREAM_ROOT}"
+  info "Created repository $REPO_NAME on remote  ${GIT_ROOT}"
 fi
 
 repo=${REPO_NAME##*.}
-tmp=$(mktemp -d /tmp/${repo}.XXXXXX)
-git clone ${GIT_UPSTREAM_ROOT}/${REPO_NAME} ${tmp}/$repo >/dev/null 2>&1
+tmp=$(mktemp -d /tmp/mkrepo.XXXXXX)
+info "git clone ${GIT_UPSTREAM}/${REPO_NAME} ${tmp}/$repo"
+git clone ${GIT_UPSTREAM}/${REPO_NAME} ${tmp}/$repo >/dev/null 2>&1
 STATUS=$?
 if [ $STATUS -ne 0 ]; then
-	msg_err "Exited with status $STATUS"
+	error "Exited with status $STATUS"
   exit $STATUS
-fi
-
-if [ -d ${tmp}/${repo}/.git ]; then
+elif [ -d ${tmp}/${repo}/.git ]; then
   cp -rf ${tmp}/${repo}/.git ${REPO_BASEDIR}
-  msg "$repo initialized"
+  info "Existing dir $repo initialized as git repo"
 fi
 exit $STATUS

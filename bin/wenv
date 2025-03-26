@@ -6,36 +6,36 @@ envdir=${XDG_RUNTIME_DIR}/env
 
 if [ -d "$envdir" ]; then
   rm -f "$envdir/*"
-  info "wenvdir $envdir updated"
+  info "wenvdir updated"
 else
   mkdir -p "$envdir"
-  info "wenvdir $envdir created"
+  info "wenvdir created"
 fi
 
-printf $XDG_RUNTIME_DIR > ${envdir}/XDG_RUNTIME_DIR
-printf $envdir > $envdir/envdir
+printf "$XDG_RUNTIME_DIR" > ${envdir}/XDG_RUNTIME_DIR
+printf "$envdir" > $envdir/envdir
 
-#printf $XDG_CONFIG_HOME > ${envdir}/XDG_CONFIG_HOME
-#printf $XDG_DATA_HOME  > ${envdir}/XDG_DATA_HOME
-#printf $XDG_CACHE_HOME   > ${envdir}/XDG_CACHE_HOME
+#printf "$XDG_CONFIG_HOME" > ${envdir}/XDG_CONFIG_HOME
+#printf "$XDG_DATA_HOME"  > ${envdir}/XDG_DATA_HOME
+#printf "$XDG_CACHE_HOME"   > ${envdir}/XDG_CACHE_HOME
 
-printf $XDG_SESSION_DESKTOP > ${envdir}/XDG_CURRENT_DESKTOP
-printf $XDG_SESSION_TYPE > ${envdir}/XDG_SESSION_TYPE
+printf "$XDG_SESSION_DESKTOP" > ${envdir}/XDG_CURRENT_DESKTOP
+printf "$XDG_SESSION_TYPE" > ${envdir}/XDG_SESSION_TYPE
 
-#printf $XCURSOR_NAME > ${envdir}/XCURSOR_NAME
-#printf $XCURSOR_SIZE > ${envdir}/XCURSOR_SIZE
+#printf "$XCURSOR_NAME" > ${envdir}/XCURSOR_NAME
+#printf "$XCURSOR_SIZE" > ${envdir}/XCURSOR_SIZE
 
-printf $LANG > ${envdir}/LANG
-printf $LC_COLLATE > ${envdir}/LC_COLLATE
-printf $BROWSER > ${envdir}/BROWSER
-printf $EDITOR > ${envdir}/EDITOR
-printf $PAGER > ${envdir}/PAGER
-printf $VISUAL > ${envdir}/VISUAL
+printf "$LANG" > ${envdir}/LANG
+printf "$LC_COLLATE" > ${envdir}/LC_COLLATE
+printf "$BROWSER" > ${envdir}/BROWSER
+printf "$EDITOR" > ${envdir}/EDITOR
+printf "$PAGER" > ${envdir}/PAGER
+printf "$VISUAL" > ${envdir}/VISUAL
 
-printf $GPG_AGENT_INFO > ${envdir}/GPG_AGENT_INFO
-printf $SSH_AUTH_SOCK > ${envdir}/SSH_AUTH_SOCK
+printf "$GPG_AGENT_INFO" > ${envdir}/GPG_AGENT_INFO
+printf "$SSH_AUTH_SOCK" > ${envdir}/SSH_AUTH_SOCK
 
-printf $WAYLAND_DISPLAY > ${envdir}/WAYLAND_DISPLAY
-printf $DISPLAY > ${envdir}/DISPLAY
-printf $SWAYSOCK > ${envdir}/SWAYSOCK
-printf $I3SOCK > ${envdir}/I3SOCK
+printf "$WAYLAND_DISPLAY" > ${envdir}/WAYLAND_DISPLAY
+printf "$DISPLAY" > ${envdir}/DISPLAY
+printf "$SWAYSOCK" > ${envdir}/SWAYSOCK
+printf "$I3SOCK" > ${envdir}/I3SOCK
