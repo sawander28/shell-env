@@ -1,7 +1,6 @@
 # -*- mode sh -*-
 
 # ANSI escape sequences
-
 reset='\033[0m' bold='1' italic='3' underline='4' blink='5' fastblink='6'
 # Regular
 black='\033[0;30m' red='\033[0;31m'    green='\033[0;32m'  yellow='\033[0;33m'
@@ -10,14 +9,13 @@ blue='\033[0;34m'  purple='\033[0;35m' cyan='\033[0;36m'   white='\033[0;37m'
 boblack='\033[1;30m' bored='\033[1;31m' bogreen='\033[1;32m' boyellow='\033[1;33m'
 boblue='\033[1;34m' bopurple='\033[1;35m' bocyan='\033[1;36m' bowhite='\033[1;37m'
 
-# Tiny lightweight logger
-
+# Tiny lightweight loggers
+# OK bold/green
+ok(){ printf "\033[1m\033[32m OK\033[m\n"; }
 # MSG bold/white
 msg(){ printf "\033[1m=> $@\033[m\n"; }
 # INFO bold/yellow
 info(){ printf "\033[1m\033[33m=> $@\033[m\n"; }
-# OK bold/green
-ok(){ printf "\033[1m\033[32m OK\033[m\n"; }
 # WARN bold/yellow
 warn(){ printf "\033[1m\033[33mWARNING: $@\033[m\n"; }
 # ERROR bold/red
