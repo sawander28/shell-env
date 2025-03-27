@@ -1,55 +1,25 @@
 # -*- mode sh -*-
 
-# Common little helper functions adapted from Void Linux runit init-scripts
-
-#
 # ANSI escape sequences
-#
 
-reset='\033[0m'         # Reset
-bold='1'
-italic='3'
-underline='4'
-blink='5'
-fastblink='6'
-
+reset='\033[0m' bold='1' italic='3' underline='4' blink='5' fastblink='6'
 # Regular
-black='\033[0;30m'      # Black
-red='\033[0;31m'        # Red
-green='\033[0;32m'      # Green
-yellow='\033[0;33m'     # Yellow
-blue='\033[0;34m'       # Blue
-purple='\033[0;35m'     # Purple
-cyan='\033[0;36m'       # Cyan
-white='\033[0;37m'      # White
-
+black='\033[0;30m' red='\033[0;31m'    green='\033[0;32m'  yellow='\033[0;33m'
+blue='\033[0;34m'  purple='\033[0;35m' cyan='\033[0;36m'   white='\033[0;37m'
 # Bold
-boblack='\033[1;30m'    # Black
-bored='\033[1;31m'      # Red
-bogreen='\033[1;32m'    # Green
-boyellow='\033[1;33m'   # Yellow
-boblue='\033[1;34m'     # Blue
-bopurple='\033[1;35m'   # Purple
-bocyan='\033[1;36m'     # Cyan
-bowhite='\033[1;37m'    # White
+boblack='\033[1;30m' bored='\033[1;31m' bogreen='\033[1;32m' boyellow='\033[1;33m'
+boblue='\033[1;34m' bopurple='\033[1;35m' bocyan='\033[1;36m' bowhite='\033[1;37m'
 
-
-#
 # Tiny lightweight logger
-#
 
 # MSG bold/white
 msg(){ printf "\033[1m=> $@\033[m\n"; }
-
 # INFO bold/yellow
 info(){ printf "\033[1m\033[33m=> $@\033[m\n"; }
-
 # OK bold/green
 ok(){ printf "\033[1m\033[32m OK\033[m\n"; }
-
 # WARN bold/yellow
 warn(){ printf "\033[1m\033[33mWARNING: $@\033[m\n"; }
-
 # ERROR bold/red
 error(){ printf "\033[1m\033[31mERROR: $@\033[m\n"; }
 
