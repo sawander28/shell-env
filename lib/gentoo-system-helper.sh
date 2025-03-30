@@ -1,24 +1,14 @@
 # -*- mode: sh -*-
 
-
-#
 # Tiny little Gentoo system helper functions
-#
 
-
-#
 # generate a random password using openssl to stdout
-#
-
 function genpwd {
 	openssl rand -base64 48
 }
 
 
-#
 # Mount/fstab info helper
-#
-
 mount-info(){
 	local arg args fs src opts opt ret
 
@@ -57,20 +47,14 @@ mount-info(){
 }
 
 
-#
 # Simple xev key code
-#
-
 xev-key-code(){
 	xev | grep -A2 --line-buffered '^KeyRelease' | \
 	sed -nre '/keycode /s/^.*keycode ([0-9]*).* (.*, (.*)).*$/\1 \2/p'
 }
 
 
-#
 # paste function to http://sprunge.us
-#
-
 sprunge(){
 	case "${1}" in
 		(''|-) curl -F 'sprunge=<-' http://sprunge.us;;
@@ -85,9 +69,7 @@ sprunge(){
 }
 
 
-#
 # html search query
-#
 pkg-search(){
 	local url="http://gentoo.zapto.org/packages/search?description"
 	case "${1}" in
@@ -97,10 +79,8 @@ pkg-search(){
 	esac
 }
 
-#
-# Collect info about running kernel modules
-# 
 
+# Collect info about running kernel modules
 mod-info(){
 	local dir line conf mod{,s} info de null=/dev/null
 
@@ -125,10 +105,8 @@ mod-info(){
 	done
 }
 
-#
-# colorful helper to retrieve Kernel Module Parameters
-#
 
+# colorful helper to retrieve Kernel Module Parameters
 mod-info-color(){
 	local line conf dir mod{,s} info null=/dev/null newline='
 '
@@ -175,4 +153,3 @@ mod-info-color(){
 }
 
 # vim:fenc=utf-8 ft=sh ts=4 sts=4 sw=4 et
-

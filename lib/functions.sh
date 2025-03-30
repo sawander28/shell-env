@@ -10,8 +10,6 @@ boblack='\033[1;30m' bored='\033[1;31m' bogreen='\033[1;32m' boyellow='\033[1;33
 boblue='\033[1;34m' bopurple='\033[1;35m' bocyan='\033[1;36m' bowhite='\033[1;37m'
 
 # Tiny lightweight loggers
-# OK bold/green
-ok(){ printf "\033[1m\033[32m OK\033[m\n"; }
 # MSG bold/white
 msg(){ printf "\033[1m=> $@\033[m\n"; }
 # INFO bold/yellow
@@ -20,11 +18,12 @@ info(){ printf "\033[1m\033[33m=> $@\033[m\n"; }
 warn(){ printf "\033[1m\033[33mWARNING: $@\033[m\n"; }
 # ERROR bold/red
 error(){ printf "\033[1m\033[31mERROR: $@\033[m\n"; }
+# OK bold/green
+ok(){ printf "\033[1m\033[32m OK\033[m\n"; }
 
 
 #
 # Starting emergency shell
-
 emergency_shell(){
     echo
     echo "Cannot continue due to errors above, starting emergency shell."
@@ -34,7 +33,6 @@ emergency_shell(){
 
 
 # Check if system is running in container or vm
-
 detect_container(){
     # LXC, podman
     [ -z "${container+x}" ] || export IS_CONTAINER=1
@@ -46,7 +44,6 @@ detect_container(){
 
 
 # Deactivate LVM2 volume group
-
 deactivate_vgs(){
     _group=${1:-All}
     if [ -x /sbin/vgchange -o -x /bin/vgchange ]; then
@@ -60,7 +57,6 @@ deactivate_vgs(){
 
 
 # Deactivate dm-crypt volume
-
 deactivate_crypt(){
     if [ -x /sbin/dmsetup -o -x /bin/dmsetup ]; then
         msg "Deactivating Crypt Volumes"
@@ -74,7 +70,7 @@ deactivate_crypt(){
     fi
 }
 
-
+# Yes/No helper
 yesno(){
 	case "${1:-NO}" in
 	(0|[Dd][Ii][Ss][Aa][Bb][Ll][Ee]|[Oo][Ff][Ff]|[Ff][Aa][Ll][Ss][Ee]|[Nn][Oo])
@@ -85,6 +81,5 @@ yesno(){
 		return 2;;
 	esac
 }
-
 
 # vim: fenc=utf8 ft=sh ts=4 sts=4 sw=4 et

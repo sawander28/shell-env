@@ -39,18 +39,22 @@ msg "upstream git root: $GIT_ROOT"
 msg "repo name: $REPO_NAME"
 msg "repo description: $REPO_DESCRIPTION"
 
-ssh -t ${GIT_USER}@${GIT_HOST} mkdir -p ${GIT_ROOT}/${REPO_NAME} && git --bare init ${GIT_ROOT}/${REPO_NAME} && echo ${REPO_DESCRIPTION} > ${GIT_ROOT}/${REPO_NAME}/description
+ssh -t "${GIT_USER}@${GIT_HOST}" "mkdir -p "${GIT_ROOT}/${REPO_NAME}" && git --bare init "${GIT_ROOT}/${REPO_NAME}" && echo ${REPO_DESCRIPTION} > ${GIT_ROOT}/${REPO_NAME}/description"
 STATUS="$?"
 if [ ${STATUS} -ne 0 ]; then
   error "Creating repo ${REPO_NAME} on ${GIT_HOST} failed."
   error "Code: ${STATUS}"
+  if [ -d "${GIT_ROOT}/${REPO_NAME}" ]; then
+    rm -Rf "${GIT_ROOT}/${REPO_NAME}"
+    warn "Deleted repo ${REPO_NAME} on remote server ${GIT_HOST}."
+  fi
   exit ${STATUS}
 else
   info "Created repo ${REPO_NAME} on ${GIT_HOST} successfully."
 fi
 
 # Clone our new repo to tmpdir
-repo="${REPO_NAME##*.}"
+repo="${REPO_NAME%%.*}"
 tmp="$(mktemp -d /tmp/mkrepo.XXXXXX)"
 info "Cloning ${GIT_UPSTREAM}/${REPO_NAME} to ${tmp}/$repo tmpdir"
 git clone "${GIT_UPSTREAM}/${REPO_NAME}" ${tmp}/$repo >/dev/null 2>&1
@@ -62,16 +66,23 @@ fi
 
 # Is local repo still version controlled -> grab remote as upstream to our new repo
 if [ -d "${REPO_BASEDIR}/.git" ]; then
-  upstream=$(git remote show origin ${REPO_BASEDIR} | \
-    grep "Fetch URL" | awk '{print $1}')
-  info "Found existing git remote and try to add it as upstream."
+  PREV="$PWD"
+  cd "${REPO_BASEDIR}"
+  printf "$(git remote show origin ${REPO_BASEDIR} | \
+    grep "Fetch URL" | awk '{print $3}')" > upstream
+  cd "${PREV}"
+  info "Found existing git remote $upstream, try to add it as upstream."
 else
   info "No existing git remote found => Our new empty initialized repo is ready."
 fi
 
 if [ -d "${tmp}/${repo}/.git" ]; then
   # add remote upstream to our new initialized repo
-  git remote add upstream "${upstream}" "${tmp}/${repo}"
+  PREV="${PWD}"
+  cd "${tmp}/${repo}"
+  git remote add upstream "${upstream}"
+  git branch --set-upstream-to=origin/master
+  cd "${PREV}"
   info "Added git upstream remote ${upstream} to our new initialized repo ${repo}."
   info "Copying our ready repo to ${REPO_BASEDIR}."
   # copy ready initialized repo to local basedir
