@@ -30,6 +30,6 @@ GIT_PS1_COMPRESSSPARSESTATE="?"
 GIT_PS1_DESCRIBE_STYLE="branch,describe,tag"
 
 # Title
-PS1='\[\033]0;\u@\h:\w\007'
+#PS1='\[\033]0;\u@\h:\w\007'
 # Prompt
-PS1+='\[\033[01;32m\]\u@\h\[\033[00m\]$(__git_ps1 " (%s)") \[\033[0;37m\]\W \$\[\033[00m\] '
+#PS1+='\[\033[01;32m\]\u@\h\[\033[00m\]$(__git_ps1 " (%s)") \[\033[0;37m\]\W \$\[\033[00m\] '
