@@ -71,7 +71,7 @@ sprunge(){
 
 # html search query
 pkg-search(){
-	local url="http://gentoo.zapto.org/packages/search?description"
+	local url="http://packages.gentoo.org/packages/search?description"
 	case "${1}" in
 		([a-zA-Z]*) curl -s "${url}=${1}" | html2text -nobs \
 			| awk '/results for query/ { i=1 }; (i && $1 != "[Home]") { print }'
