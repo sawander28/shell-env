@@ -68,12 +68,15 @@ fi
 if [ -d "${REPO_BASEDIR}/.git" ]; then
   PREV="$PWD"
   cd "${REPO_BASEDIR}"
-  printf "$(git remote show origin ${REPO_BASEDIR} | \
-    grep "Fetch URL" | awk '{print $3}')" > upstream
+  
+  upstream=$(git remote show origin ${REPO_BASEDIR} | \
+    grep "Fetch URL" | awk '{print $3}')
+  
   cd "${PREV}"
-  info "Found existing git remote $upstream, try to add it as upstream."
+  
+  info "Found existing git remote $upstream, try to add it as upstream"
 else
-  info "No existing git remote found => Our new empty initialized repo is ready."
+  info "No existing git remote found"
 fi
 
 if [ -d "${tmp}/${repo}/.git" ]; then
@@ -83,8 +86,7 @@ if [ -d "${tmp}/${repo}/.git" ]; then
   git remote add upstream "${upstream}"
   git branch --set-upstream-to=origin/master
   cd "${PREV}"
-  info "Added git upstream remote ${upstream} to our new initialized repo ${repo}."
-  info "Copying our ready repo to ${REPO_BASEDIR}."
+  info "Added git remote upstream ${upstream} to ${repo}"
   # copy ready initialized repo to local basedir
   cp -Rf "${tmp}/${repo}/.git" "${REPO_BASEDIR}"
   rm -Rf "${tmp}"
