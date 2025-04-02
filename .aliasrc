@@ -1,26 +1,8 @@
 # -*- mode: sh -*-
 
-alias tmux='tmux -S ${XDG_RUNTIME_DIR}/tmux.default'
-alias tmls='tmux list-sessions'
-
-alias gcd='cd $(git rev-parse --show-toplevel)'
-alias ga='git add .'
-alias gaa='git add --all'
-alias gr='git remote -v'
-alias gst='git status'
-alias gcm='git commit -m'
-alias gpu='git push origin master'
-alias gpl='git pull origin master'
-alias grhh='git reset HEAD --hard'
-alias gb='git branch -a'
-alias gt='git tag -l'
-
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-
-alias pu=pushd
-alias po=popd
 
 alias ls='/usr/bin/ls --color=auto'
 alias ip='ip --color=auto'
@@ -40,8 +22,7 @@ alias lsa='ls -Ad .*$@*'
 alias lsn='ls -hrtl *$@* | tail'
 alias lso='ls -hrtl *$@* | head'
 alias lsl='ls -Alh'
-alias halt='sudo /sbin/halt'
-alias root='sudo /sbin/reboot'
+
 alias cls=clear
 alias md=mkdir
 alias rd=rmdir
@@ -55,3 +36,23 @@ alias df='df -h'
 alias free='free -h'
 alias ds='du -sh'
 alias res='cd ~ && tput clear'
+alias pu=pushd
+alias po=popd
+
+# Tmux
+alias tmux='tmux -S ${XDG_RUNTIME_DIR}/tmux.default'
+alias tmls='tmux list-sessions'
+
+
+# Git 
+alias gcd='cd $(git rev-parse --show-toplevel)'
+alias ga='git add .'
+alias gaa='git add --all'
+alias gr='git remote -v'
+alias gst='git status'
+alias gcm='git commit -m'
+alias gpu='git push origin master'
+alias gpl='git pull origin master'
+alias grhh='git reset HEAD --hard'
+alias gb='git branch -a'
+alias gt='git tag -l'
