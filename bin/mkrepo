@@ -8,7 +8,7 @@ script="${0##*/}"
 GIT_USER="git"
 GIT_HOST="rpi3.local"
 GIT_ROOT="/home/git/repos"
-GIT_UPSTREAM="ssh://${GIT_USER}@${GIT_HOST}/${GIT_ROOT##*/}"
+GIT_UPSTREAM="${GIT_USER}@${GIT_HOST}:${GIT_ROOT##*/}"
 
 # local
 REPO_BASEDIR="${PWD}"
@@ -22,25 +22,19 @@ if [ "$#" -lt 2 ] || [ -z "${REPO_DESCRIPTION}" ]; then
   exit 17;
 fi
 
-# Is repo already existing on server ?
-ssh -t "${GIT_HOST}" test -d "${GIT_ROOT}/${REPO_NAME}"
-STATUS=$?
-if [ ${STATUS} -eq 0 ]; then
-  warn "Repo $REPO already exist on $GIT_HOST, aborting"
-  exit ${STATUS}
+if $(ssh -t ${GIT_USER}@${GIT_HOST} "test -d ${GIT_ROOT}/${REPO_NAME}"); then
+  warn "Repo $REPO exists, aborting"
+  exit 128
 fi
-
-dbg "GIT_ROOT=$GIT_ROOT\tGIT_UPSTREAM=$GIT_UPSTREAM\tREPO_BASEDIR=$REPO_BASEDIR"
-dbg "REPO=$REPO\tREPO_NAME=$REPO_NAME\tREPO_DESCRIPTION=$REPO_DESCRIPTION"
 
 ssh -t "${GIT_USER}@${GIT_HOST}" "mkdir -p ${GIT_ROOT}/${REPO_NAME} && git --bare init ${GIT_ROOT}/${REPO_NAME} && echo ${REPO_DESCRIPTION} > ${GIT_ROOT}/${REPO_NAME}/description"
 STATUS="$?"
 
 # failed -> cleanup
-if [ ${STATUS} -ne 0 ]; then
+if [ $STATUS -ne 0 ]; then
   [ -d "${GIT_ROOT}/${REPO}" ] && rm -Rf "${GIT_ROOT}/${REPO}"
   error "Creating repo $REPO on $GIT_HOST failed with status $STATUS"
-  exit ${STATUS}
+  exit $STATUS
 else
   info "Created repo $REPO on $GIT_HOST successfully"
 fi
@@ -50,11 +44,11 @@ if [ -d "${REPO_BASEDIR}/.git" ]; then
   PREV="$PWD"
   cd "${REPO_BASEDIR}"
   git remote rename origin upstream
-  git remote add origin ssh://git@rpi3.local/repos/${REPO_NAME}
+  git remote add origin git@rpi3.local:repos/${REPO_NAME}
   git branch --set-upstream-to=origin/master 
   cd "${PREV}"
   info "Found existing repo $REPO"
-  info "Moved remote origin to upstream"
+  info "Changed remote origin to upstream"
   info "Added remote origin ${GIT_UPSTREAM}"
 else
   info "No existing git remote found"
@@ -63,7 +57,7 @@ else
   git clone "${GIT_UPSTREAM}/${REPO_NAME}" "${tmp}/${REPO}"
   STATUS="$?"
   cp -Rf "${tmp}/${repo}/.git" "${REPO_BASEDIR}"
-  rm -Rf "${tmp}"
+  #rm -Rf "${tmp}"
   info "Git repo $repo initialized."
 fi
 
