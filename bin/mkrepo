@@ -22,16 +22,16 @@ if [ "$#" -lt 2 ] || [ -z "${REPO_DESCRIPTION}" ]; then
   exit 17;
 fi
 
-# Is repo already existing on bare repo ?
+# Is repo already existing on server ?
 ssh -t "${GIT_HOST}" test -d "${GIT_ROOT}/${REPO_NAME}"
 STATUS=$?
 if [ ${STATUS} -eq 0 ]; then
-  warn "Repo $REPO_NAME already exist on $GIT_HOST error code: $STATUS"
+  warn "Repo $REPO already exist on $GIT_HOST, aborting"
   exit ${STATUS}
 fi
 
-msg "GIT_ROOT=$GIT_ROOT\tGIT_UPSTREAM=$GIT_UPSTREAM\tREPO_BASEDIR=$REPO_BASEDIR"
-msg "REPO=$REPO\tREPO_NAME=$REPO_NAME\tREPO_DESCRIPTION=$REPO_DESCRIPTION"
+dbg "GIT_ROOT=$GIT_ROOT\tGIT_UPSTREAM=$GIT_UPSTREAM\tREPO_BASEDIR=$REPO_BASEDIR"
+dbg "REPO=$REPO\tREPO_NAME=$REPO_NAME\tREPO_DESCRIPTION=$REPO_DESCRIPTION"
 
 ssh -t "${GIT_USER}@${GIT_HOST}" "mkdir -p ${GIT_ROOT}/${REPO_NAME} && git --bare init ${GIT_ROOT}/${REPO_NAME} && echo ${REPO_DESCRIPTION} > ${GIT_ROOT}/${REPO_NAME}/description"
 STATUS="$?"

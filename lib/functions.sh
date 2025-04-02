@@ -20,9 +20,14 @@ warn(){ printf "\033[1m\033[33mWARNING: $@\033[m\n"; }
 error(){ printf "\033[1m\033[31mERROR: $@\033[m\n"; }
 # OK bold/green
 ok(){ printf "\033[1m\033[32m OK\033[m\n"; }
+# DEBUG bold/green
+dbg(){ [ "debug" = "enabled" ] && printf "\033[1m\033[32mDEBUG: $@\033[m\n"; }
 
+die(){
+    print '%s\n' "$1" >&2
+    exit 1
+}
 
-#
 # Starting emergency shell
 emergency_shell(){
     echo
