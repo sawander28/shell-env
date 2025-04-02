@@ -11,7 +11,7 @@ if [ $EUID == 0 ]; then
 
 elif [ -f /usr/share/git/git-prompt.sh ]; then
   . /usr/share/git/git-prompt.sh
-  PS1+='\[\033[01;36m\]\u@\h\[\033[00m\]$(__git_ps1 " (%s)") \[\033[1m\]\W \$\[\033[00m\] '
+  PS1+='\[\033[01;34m\]\u@\h\[\033[00m\]$(__git_ps1 " (%s)") \[\033[1m\]\W \$\[\033[00m\] '
 else
   PS1='[\u@\h \W]\$ '
 fi
