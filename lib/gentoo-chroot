@@ -1,17 +1,21 @@
-#!/bin/sh
+#!/bin/sh -e
 
-#
-# Setup chroot for gentoo efistub boot
-#
+# gentoo-chroot DIR [CMD..]
 
-# gentoo-chroot /mnt /bin/bash
+script="${0##*/}"
 
-: ${CHROOT:=$1}
-: ${SHELL:=$2}
-
-if [ $# -ng 1 ]; then
-  printf "Usage $0 <mountpoint> <shell>\n"
+die(){
+  printf '%s\n' "$1" >&2
   exit 1
+}
+
+(( EUID == 0 )) die 'Run as root'
+
+: ${CHROOT:=$1}; shift
+
+
+if [ "$#" -lt 1 ]; then
+  die "Usage: $script <mountpoint> <shell>"
 fi
 
 #zpool import -N -R ${CHROOT=-/mnt} ${ZPOOL=:zroot}
@@ -37,10 +41,5 @@ mount --bind /run  ${CHROOT}/run
 # ENTRY POINT CHROOT
 #
 
-printf "\033[1m=> Entering chroot ${CHROOT}\033[m\n"; }
+printf "\033[1m=> Entering chroot ${CHROOT}\033[m\n"; 
 chroot ${CHROOT} ${SHELL:=/bin/bash}
-
-
-source /etc/profile
-export PS1="(chroot) ${PS1}"
-
