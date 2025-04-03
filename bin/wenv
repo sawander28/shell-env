@@ -4,6 +4,10 @@
 
 envdir=${XDG_RUNTIME_DIR}/env
 
+add(){
+  echo "$XDG_RUNTIME_DIR" > "${WENVDIR}/XDG_RUNTIME_DIR" 
+}
+
 if [ -d "$envdir" ]; then
   rm -f "$envdir/*"
   info "wenvdir updated"
