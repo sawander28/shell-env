@@ -39,8 +39,6 @@ export DBUS_SESSION_BUS_ADDRESS
 : ${SVDIR:=$HOME/service}
 export SVDIR
 
-export WHOME="/home/wandsas"
-export WENV="${XDG_RUNTIME_DIR}/env"
 
 if [ -d ~/.profile.d ]; then
   for sh in ~/.profile.d/*.sh; do

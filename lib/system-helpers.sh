@@ -58,6 +58,11 @@ deactivate_crypt(){
 
 # Yes/No helper
 yesno(){
+    case "$1" in
+        Yes|Y|1|true) return 0 ;;
+        *) return 1 ;;
+    esac
+}
 
 # Mount/fstab info helper
 mount-info(){

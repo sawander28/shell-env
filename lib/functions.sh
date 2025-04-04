@@ -19,24 +19,27 @@ boblue='\033[1;34m' bopurple='\033[1;35m' bocyan='\033[1;36m' bowhite='\033[1;37
 #
 
 # MSG bold/white
-msg(){ printf "\033[1m=> $@\033[m\n"; }
+msg(){ printf "\033[1m $@\033[m\n"; }
 
 # INFO bold/yellow
-info(){ printf "\033[1m\033[33m=> $@\033[m\n"; }
+info(){ printf "\033[1m\033[33m\033[m $@\n"; }
+
+# LOG bold/green
+log(){ printf "\033[1m\033[32mLOG:\033[m $@\n"; }
 
 # WARN bold/yellow
-warn(){ printf "\033[1m\033[33mWARNING: $@\033[m\n"; }
+warn(){ printf "\033[1m\033[33mWARNING:\033[m $@\n"; }
 
 # ERROR bold/red
-error(){ printf "\033[1m\033[31mERROR: $@\033[m\n"; }
+error(){ printf "\033[1m\033[31mERROR:\033[m $@\n"; }
 
 # OK bold/green
 ok(){ printf "\033[1m\033[32m OK\033[m\n"; }
 
-# DEBUG bold/green
-dbg(){ [ "debug" = "enabled" ] && printf "\033[1m\033[32mDEBUG: $@\033[m\n"; }
-
-# EXIT bold/white
-die(){ error $@; exit $?; }
+# EXIT
+die(){ 
+  error "$@"
+  exit "$?"
+}
 
 # vim: fenc=utf-8 ft=sh ts=2 sts=2 sw=2 et
