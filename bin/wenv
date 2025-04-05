@@ -4,42 +4,35 @@
 
 envdir=${XDG_RUNTIME_DIR}/env
 
-add(){
-  echo "$XDG_RUNTIME_DIR" > "${WENVDIR}/XDG_RUNTIME_DIR" 
+[ -d $envdir ] || mkdir -p $envdir
+
+envvar(){
+  export "${1}=${2}"
+  printf '%s'  "$2" > "${envdir}/${1}"
 }
 
-if [ -d "$envdir" ]; then
-  rm -f "$envdir/*"
-  info "wenvdir updated"
-else
-  mkdir -p "$envdir"
-  info "wenvdir created"
-fi
+envvar XDG_SESSION_DESKTOP "$XDG_SESSION_DESKTOP"
+envvar XDG_SESSION_TYPE    "$XDG_SESSION_TYPE"
 
-printf "$XDG_RUNTIME_DIR" > "${envdir}/XDG_RUNTIME_DIR"
-printf "$envdir" > "${envdir}/envdir"
+envvar XDG_RUNTIME_DIR     "$XDG_RUNTIME_DIR"
+envvar XDG_CONFIG_HOME     "$XDG_CONFIG_HOME"
+envvar XDG_DATA_HOME       "$XDG_DATA_HOME"
+envvar XDG_CACHE_HOME      "$XDG_CACHE_HOME"
 
-printf "$XDG_CONFIG_HOME" > "${envdir}/XDG_CONFIG_HOME"
-printf "$XDG_DATA_HOME"  > "${envdir}/XDG_DATA_HOME"
-printf "$XDG_CACHE_HOME"   > "${envdir}/XDG_CACHE_HOME"
+envvar XCURSOR_NAME        "$XCURSOR_NAME"
+envvar XCURSOR_SIZE        "$XCURSOR_SIZE"
 
-printf "$XDG_SESSION_DESKTOP" > "${envdir}/XDG_CURRENT_DESKTOP"
-printf "$XDG_SESSION_TYPE" > "${envdir}/XDG_SESSION_TYPE"
+envvar LANG                "$LANG"
+envvar LC_COLLATE          "$LC_COLLATE"
+envvar BROWSER             "$BROWSER"
+envvar EDITOR              "$EDITOR"
+envvar PAGER               "$PAGER"
+envvar VISUAL              "$VISUAL"
 
-printf "$XCURSOR_NAME" > "${envdir}/XCURSOR_NAME"
-printf "$XCURSOR_SIZE" > "${envdir}/XCURSOR_SIZE"
+envvar GPG_AGENT_INFO      "$GPG_AGENT_INFO"
+envvar SSH_AUTH_SOCK       "$SSH_AUTH_SOCK"
 
-printf "$LANG" > ${envdir}/LANG
-printf "$LC_COLLATE" > "${envdir}/LC_COLLATE"
-printf "$BROWSER" > "${envdir}/BROWSER"
-printf "$EDITOR" > "${envdir}/EDITOR"
-printf "$PAGER" > "${envdir}/PAGER"
-printf "$VISUAL" > "${envdir}/VISUAL"
-
-printf "$GPG_AGENT_INFO" > "${envdir}/GPG_AGENT_INFO"
-printf "$SSH_AUTH_SOCK" > "${envdir}/SSH_AUTH_SOCK"
-
-printf "$WAYLAND_DISPLAY" > "${envdir}/WAYLAND_DISPLAY"
-printf "$DISPLAY" > "${envdir}/DISPLAY"
-printf "$SWAYSOCK" > "${envdir}/SWAYSOCK"
-printf "$I3SOCK" > "${envdir}/I3SOCK"
+envvar WAYLAND_DISPLAY     "$WAYLAND_DISPLAY"
+envvar DISPLAY             "$DISPLAY"
+envvar SWAYSOCK            "$SWAYSOCK"
+envvar I3SOCK              "$I3SOCK"

@@ -37,9 +37,26 @@ error(){ printf "\033[1m\033[31mERROR:\033[m $@\n"; }
 ok(){ printf "\033[1m\033[32m OK\033[m\n"; }
 
 # EXIT
-die(){ 
+abort(){ 
   error "$@"
   exit "$?"
+}
+
+die(){
+  printf " \e[1;31m*\e[0m ${*}\n" >&2
+  exit 1
+}
+
+einfo(){
+  printf " \e[1;32m*\e[0m ${*}\n"
+}
+
+ewarn(){
+  printf " \e[1;33m*\e[0m ${*}\n"
+}
+
+eerror(){
+  printf " \e[1;31m*\e[0m ${*}\n" >&2
 }
 
 # vim: fenc=utf-8 ft=sh ts=2 sts=2 sw=2 et
