@@ -58,5 +58,5 @@ alias gb='git branch -a'
 alias gt='git tag -l'
 
 alias portscan="nmap -Pn"
-alis myip="curl ipinfo.io/ip"
+alias myip="curl ipinfo.io/ip"
 err() { errstr $?; }
