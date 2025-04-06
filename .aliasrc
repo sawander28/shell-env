@@ -59,4 +59,4 @@ alias gt='git tag -l'
 
 alias portscan="nmap -Pn"
 alis myip="curl ipinfo.io/ip"
-err() errstr $?
+err() { errstr $?; }
