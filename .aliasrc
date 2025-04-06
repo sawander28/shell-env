@@ -56,3 +56,7 @@ alias gpl='git pull origin master'
 alias grhh='git reset HEAD --hard'
 alias gb='git branch -a'
 alias gt='git tag -l'
+
+alias portscan="nmap -Pn"
+alis myip="curl ipinfo.io/ip"
+err() errstr $?
