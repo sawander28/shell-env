@@ -1,2 +1,1 @@
-
 export GOPATH=$HOME/go
