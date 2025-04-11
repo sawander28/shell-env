@@ -1,7 +1,6 @@
 # -*- mode sh -*-
 
-
-# ANSI escape sequences
+# -*- ANSI escape sequences -*-
 
 reset='\033[0m' bold='1' italic='3' underline='4' blink='5' fastblink='6'
 # Regular
@@ -12,7 +11,7 @@ boblack='\033[1;30m' bored='\033[1;31m' bogreen='\033[1;32m' boyellow='\033[1;33
 boblue='\033[1;34m' bopurple='\033[1;35m' bocyan='\033[1;36m' bowhite='\033[1;37m'
 
 
-# Tiny little loggers
+# -*- Tiny little loggers -*-
 
 einfo(){
   printf " \e[1;32m*\e[0m ${*}\n"
