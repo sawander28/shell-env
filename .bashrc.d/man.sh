@@ -1,11 +1,13 @@
+#MANPAGER="less -R --use-color -Dd+r -Du+b"
+##export MANPAGER
 
 man() {
-    LESS_TERMCAP_md=$'\e[01;31m' \  # red
-    LESS_TERMCAP_me=$'\e[0m' \
-    LESS_TERMCAP_se=$'\e[0m' \
-    LESS_TERMCAP_so=$'\e[01;44;33m' \
-    LESS_TERMCAP_ue=$'\e[0m' \      
-    LESS_TERMCAP_us=$'\e[01;32m' \  # green
-    command man "$@"
+    LESS_TERMCAP_mb=$(printf "\e[01;33m") \
+    LESS_TERMCAP_md=$(printf "\e[01;33m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[01;36m") \
+      command man "$@"
 }
-

@@ -21,6 +21,7 @@ prependpath "/usr/bin"
 prependpath "/usr/local/sbin"
 prependpath "/usr/local/bin"
 prependpath "${GOPATH}/bin"
+prependpath "${HOME}/.cargo/bin"
 prependpath "${HOME}/bin"
 unset prependpath
 export PATH
