@@ -1,6 +1,6 @@
 # -*- mode: sh -*-
 
-# Tiny little system helper functions
+# Tiny little helper functions
 
 
 # generate a random password using openssl to stdout
@@ -56,13 +56,6 @@ deactivate_crypt(){
     fi
 }
 
-# Yes/No helper
-yesno(){
-    case "$1" in
-        Yes|Y|1|true) return 0 ;;
-        *) return 1 ;;
-    esac
-}
 
 # Mount/fstab info helper
 mount-info(){

@@ -1,12 +1,9 @@
 # -*- mode: sh -*-
 
-#
-# Some convenient path functions
-#
+# Some convenient path helper functions
 
 
 # Add element as first in PATH
-
 prependpath(){
   case ":$PATH:" in
     *":$1:"*) ;;
@@ -29,7 +26,6 @@ prependpath(){
 
 
 # Add element as last element to PATH
-
 appendpath(){
   case ":${PATH}:" in
   *":${1}:"*) ;;
@@ -38,8 +34,7 @@ appendpath(){
 }
 
 
-# Initial my-user's  PATH
-
+# Default  PATH
 initpath(){
 for x in \
   "$HOME/bin" \
@@ -60,8 +55,7 @@ done
 }
 
 
-# Initialize minimal PATH
-
+# Set minimal PATH
 minpath(){
 for x in \
 	"$HOME/bin" \
@@ -79,8 +73,7 @@ done
 }
 
 
-# Initialize default PATH
-
+# Set default PATH
 defaultpath(){
   export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 }

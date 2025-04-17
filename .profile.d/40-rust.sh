@@ -5,6 +5,4 @@
 #	  aarch64-linux-android \
 #	  i686-linux-android \
 #	  x86_64-linux-android
-# ndk @TODO
-#	 export NDK_HOME=/<path/to/where/you/unzipped>/android-ndk-r22b/
 export CARGO_HOME=$HOME/.cargo
