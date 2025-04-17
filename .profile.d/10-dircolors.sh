@@ -5,7 +5,7 @@
 [ -z "$PS1" ] && return
 
 COLORS=
-for colors in "$HOME/.dircolors /etc/colors/DIR_COLORS.xterm; do
+for colors in "$HOME/.dircolors" "/etc/colors/DIR_COLORS.xterm"; do
   [ -e "$colors" ] && COLORS="$colors" && break
 done
 
