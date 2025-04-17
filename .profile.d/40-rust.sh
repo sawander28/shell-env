@@ -1,8 +1,10 @@
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-# for android 14 devices & qemu emulator 
+export CARGO_HOME=$HOME/.cargo
+
+
+# Rust cross-compiler for android devices (armv7/aarch64) & qemu emulators
 # rustup target install \
 #   armv7-linux-androideabi \
 #	  aarch64-linux-android \
 #	  i686-linux-android \
 #	  x86_64-linux-android
-export CARGO_HOME=$HOME/.cargo
