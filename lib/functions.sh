@@ -1,6 +1,10 @@
 # *-*-shell-*-*
 # vim: set fenc=utf-8  ts=4 sts=4 sw=4 et:
 
+msg(){
+    printf "\033[1m=> $@\033[m\n"
+}
+
 info(){
   printf " \033[1;32m*\033[0m ${*}\n"
 }

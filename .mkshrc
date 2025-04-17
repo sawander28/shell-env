@@ -4,7 +4,7 @@
 \export MKSH SHELL HISTFILE HISTSIZE
 
 case "$TERM" in
-xterm|linux|screen|alacritty|*256col*)
+xterm|linux|screen|alacritty|kitty|foot|*256col*)
 	PS1=$'\001\r''$(\
 ((e=$?))||e="";
 d=${PWD/$HOME/\~};
@@ -18,4 +18,4 @@ d=${PWD/$HOME/\~};
 ;;
 esac
 
-. "${XDG_CONFIG_HOME:-$HOME/.config}"/sh/aliases 2>/dev/null
+. $HOME/.aliasrc 2>/dev/null
