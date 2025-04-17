@@ -1,20 +1,25 @@
+# *-*-shell-*-*
+# vim: set fenc=utf-8  ts=4 sts=4 sw=4 et:
 
-# -*- Tiny little loggers -*-
-
-einfo(){
-  printf " \e[1;32m*\e[0m ${*}\n"
+info(){
+  printf " \033[1;32m*\033[0m ${*}\n"
 }
 
-ewarn(){
-  printf " \e[1;33m*\e[0m ${*}\n"
+warn(){
+  printf " \033[1;33m*\033[0m ${*}\n"
 }
 
-eerror(){
-  printf " \e[1;31m*\e[0m ${*}\n" >&2
+error(){
+  printf " \033[1;31m*\033[0m ${*}\n" >&2
+}
+
+ok() {
+    # bold/green
+    printf "\033[1m\033[32m OK\033[m\n"
 }
 
 die(){ 
-  eerror "$@"
+  error "$@"
   exit "$?"
 }
 
@@ -25,5 +30,3 @@ yesno(){
         *) return 1 ;;
     esac
 }
-
-# vim: fenc=utf-8 ft=sh ts=2 sts=2 sw=2 et

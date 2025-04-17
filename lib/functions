@@ -1,22 +1,35 @@
 # *-*-shell-*-*
-# vim: set ts=4 sw=4 et:
+# vim: set fenc=utf-8  ts=4 sts=4 sw=4 et:
 
-msg() {
+info() {
     # bold
     printf "\033[1m=> $@\033[m\n"
 }
 
-msg_ok() {
-    # bold/green
-    printf "\033[1m\033[32m OK\033[m\n"
+warn() {
+    # bold/yellow
+    printf "\033[1m\033[33mWARNING: $@\033[m\n"
 }
 
-msg_error() {
+error() {
     # bold/red
     printf "\033[1m\033[31mERROR: $@\033[m\n"
 }
 
-msg_warn() {
-    # bold/yellow
-    printf "\033[1m\033[33mWARNING: $@\033[m\n"
+ok() {
+    # bold/green
+    printf "\033[1m\033[32m OK\033[m\n"
+}
+
+die(){ 
+  error "$@"
+  exit "$?"
+}
+
+# Yes/No helper
+yesno(){
+    case "$1" in
+        Yes|Y|1|true) return 0 ;;
+                   *) return 1 ;;
+    esac
 }

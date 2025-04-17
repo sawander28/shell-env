@@ -2,7 +2,11 @@
 
 script="${0##*/}"
 
-. ~/lib/functions.sh
+reset="\033[0m"
+bold="\033[1m"
+bocyan='\033[1;36m'
+
+. /home/wandsas/lib/functions.sh
 
 # upstream
 GIT_USER="git"
@@ -18,52 +22,53 @@ REPO_DESCRIPTION="${2}"
 
 
 if [ "$#" -lt 2 ] || [ -z "${REPO_DESCRIPTION}" ]; then
-  ewarn "Usage: ${script} <REPO_NAME> <REPO_DESCIPTION>"
+  warn "Usage: ${script} <REPO_NAME> <REPO_DESCIPTION>"
   exit 17
 fi
 
-if $(ssh -t ${GIT_USER}@${GIT_HOST} "test -d ${GIT_ROOT}/${REPO_NAME}"); then
-  ewarn "Repo $REPO exists, aborting"
+# Test if repo already exist
+if $(ssh -t ${GIT_USER}@${GIT_HOST} "test -d ${GIT_ROOT}/${REPO_NAME}" >/dev/null 2>&1); then
+  warn "Repo $bocyan$REPO$reset already exists, aborting"
   exit 128
 fi
 
-ssh -t "${GIT_USER}@${GIT_HOST}" "mkdir -p ${GIT_ROOT}/${REPO_NAME} && git --bare init ${GIT_ROOT}/${REPO_NAME} && echo ${REPO_DESCRIPTION} > ${GIT_ROOT}/${REPO_NAME}/description"
+ssh -t "${GIT_USER}@${GIT_HOST}" "mkdir -p ${GIT_ROOT}/${REPO_NAME} && git --bare init ${GIT_ROOT}/${REPO_NAME} && echo ${REPO_DESCRIPTION} > ${GIT_ROOT}/${REPO_NAME}/description" >/dev/null 2>&1
 STATUS="$?"
 
 # failed -> cleanup
 if [ $STATUS -ne 0 ]; then
   [ -d "${GIT_ROOT}/${REPO}" ] && rm -Rf "${GIT_ROOT}/${REPO}"
-  eerror "Creating repo $REPO on $GIT_HOST failed with status $STATUS"
+  error "Creating repo $bocyan$REPO$reset on $GIT_HOST failed with status $STATUS"
   exit $STATUS
 else
-  einfo "Created repo $REPO on $GIT_HOST successfully"
+  info "Created repo $bocyan$REPO$reset on $bocyan$GIT_HOST$reset successfully"
 fi
 
 # local repo version controlled -> add remote
 if [ -d "${REPO_BASEDIR}/.git" ]; then
   PREV="$PWD"
   cd "${REPO_BASEDIR}"
-  git remote rename origin upstream
+  git remote rename origin upstream >/dev/null 2>&1
   git remote add origin git@rpi3.local:repos/${REPO_NAME}
   #git branch --set-upstream-to=origin/master 
   cd "${PREV}"
-  einfo "Found existing repo $REPO"
-  einfo "Changed remote origin to upstream"
-  einfo "Added remote origin ${GIT_UPSTREAM}"
+  info "Found existing repo $bocyan$REPO$reset"
+  info "Changed remote origin to upstream"
+  info "Added remote origin $bocyan${GIT_UPSTREAM}$reset"
 else
-  einfo "No existing git remote found"
-  einfo "Cloning new empty repo $REPO"
-  tmp="$(mktemp -d /tmp/${name}.XXXXXX)"
-  git clone "${GIT_UPSTREAM}/${REPO_NAME}" "${tmp}/${REPO}"
+  info "No version data found for current repo $bocyan$REPO$reset"
+  info "Initialized new empty repo $bocyan$REPO$reset"
+  tmpdir="$(mktemp -d /tmp/${REPO}.XXXXXX)"
+  git clone "${GIT_UPSTREAM}/${REPO_NAME}" "${tmpdir}/${REPO}" >/dev/null 2>&1
   STATUS="$?"
-  cp -Rf "${tmp}/${repo}/.git" "${REPO_BASEDIR}"
-  #rm -Rf "${tmp}"
-  einfo "Git repo $repo initialized."
+  cp -Rf "${tmpdir}/${REPO}/.git" "${REPO_BASEDIR}"
+  #rm -Rf "${tmpdir}"
+  info "Git repo $bocyan$REPO$reset initialized."
 fi
 
 if [ ${STATUS} -eq 0 ]; then
-  einfo "Script $script finished successfully"
+  info "Script $bocyan$script$reset finished successfully"
 else
-  eerror "Script finished with error code $STATUS"
+  error "Script $bocyan$script$reset finished with error code $bocyan$STATUS$reset"
 fi
 exit ${STATUS}
