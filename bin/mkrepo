@@ -38,7 +38,7 @@ STATUS="$?"
 # failed -> cleanup
 if [ $STATUS -ne 0 ]; then
   [ -d "${GIT_ROOT}/${REPO}" ] && rm -Rf "${GIT_ROOT}/${REPO}"
-  error "Creating repo $bocyan$REPO$reset on $GIT_HOST failed with status $STATUS"
+  error "Creating repo $bocyan$REPO$reset on $GIT_HOST failed with error $STATUS"
   exit $STATUS
 else
   info "Created repo $bocyan$REPO$reset on $bocyan$GIT_HOST$reset successfully"
@@ -69,6 +69,6 @@ fi
 if [ ${STATUS} -eq 0 ]; then
   info "Script $bocyan$script$reset finished successfully"
 else
-  error "Script $bocyan$script$reset finished with error code $bocyan$STATUS$reset"
+  error "Script $bocyan$script$reset finished with error $bocyan$STATUS$reset"
 fi
 exit ${STATUS}
