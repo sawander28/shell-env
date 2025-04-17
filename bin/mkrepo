@@ -18,12 +18,12 @@ REPO_DESCRIPTION="${2}"
 
 
 if [ "$#" -lt 2 ] || [ -z "${REPO_DESCRIPTION}" ]; then
-  warn "Usage: ${script} <REPO_NAME> <REPO_DESCIPTION>";
-  exit 17;
+  ewarn "Usage: ${script} <REPO_NAME> <REPO_DESCIPTION>"
+  exit 17
 fi
 
 if $(ssh -t ${GIT_USER}@${GIT_HOST} "test -d ${GIT_ROOT}/${REPO_NAME}"); then
-  warn "Repo $REPO exists, aborting"
+  ewarn "Repo $REPO exists, aborting"
   exit 128
 fi
 
@@ -33,10 +33,10 @@ STATUS="$?"
 # failed -> cleanup
 if [ $STATUS -ne 0 ]; then
   [ -d "${GIT_ROOT}/${REPO}" ] && rm -Rf "${GIT_ROOT}/${REPO}"
-  error "Creating repo $REPO on $GIT_HOST failed with status $STATUS"
+  eerror "Creating repo $REPO on $GIT_HOST failed with status $STATUS"
   exit $STATUS
 else
-  info "Created repo $REPO on $GIT_HOST successfully"
+  einfo "Created repo $REPO on $GIT_HOST successfully"
 fi
 
 # local repo version controlled -> add remote
@@ -47,21 +47,21 @@ if [ -d "${REPO_BASEDIR}/.git" ]; then
   git remote add origin git@rpi3.local:repos/${REPO_NAME}
   git branch --set-upstream-to=origin/master 
   cd "${PREV}"
-  info "Found existing repo $REPO"
-  info "Changed remote origin to upstream"
-  info "Added remote origin ${GIT_UPSTREAM}"
+  einfo "Found existing repo $REPO"
+  einfo "Changed remote origin to upstream"
+  einfo "Added remote origin ${GIT_UPSTREAM}"
 else
-  info "No existing git remote found"
-  info "Cloning new empty repo $REPO"
+  einfo "No existing git remote found"
+  einfo "Cloning new empty repo $REPO"
   tmp="$(mktemp -d /tmp/${name}.XXXXXX)"
   git clone "${GIT_UPSTREAM}/${REPO_NAME}" "${tmp}/${REPO}"
   STATUS="$?"
   cp -Rf "${tmp}/${repo}/.git" "${REPO_BASEDIR}"
   #rm -Rf "${tmp}"
-  info "Git repo $repo initialized."
+  einfo "Git repo $repo initialized."
 fi
 
 if [ ${STATUS} -ne 0 ]; then
-  warn "Script $script exited with error $STATUS"
+  ewarn "Script $script exited with error $STATUS"
 fi
 exit ${STATUS}
