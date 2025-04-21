@@ -60,3 +60,5 @@ alias gt='git tag -l'
 alias portscan="nmap -Pn"
 alias myip="curl ipinfo.io/ip"
 err() { errstr $?; }
+
+curltls(){ curl --proto '=https' --tlsv1.2 -sSf "${@}"; }

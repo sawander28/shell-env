@@ -2,9 +2,9 @@
 
 # Sign void packages
 
-REPO="${HOME}/repos/void/void-packages"
-KEY="${$REPO/.privkey.pem=-$HOME/.ssh/privkey.pem}"
-BINPKGS="${REPO}/hostdir/binpkgs/*.xbps"
+REPO=$HOME/repos/void-packages
+KEY=$REPO/.privkey.pem
+BINPKGS=$REPO/hostdir/binpkgs/*.xbps
 export XBPS_PASSPHRASE="foobar"
 
 
