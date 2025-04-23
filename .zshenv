@@ -51,3 +51,4 @@ for dirname in $fpath; do
 done
 
 # vim:fenc=utf-8:ft=zsh:
+. "$HOME/.cargo/env"
