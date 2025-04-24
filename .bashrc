@@ -22,4 +22,3 @@ if [ -d ~/.bashrc.d ]; then
 fi
 
 [ -f ~/.aliasrc ] && . ~/.aliasrc
-. "$HOME/.cargo/env"

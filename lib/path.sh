@@ -4,7 +4,7 @@
 
 
 # Add element as first in PATH
-prependpath(){
+prepend_path(){
   case ":$PATH:" in
     *":$1:"*) ;;
            *) PATH="$1${PATH:+:$PATH}";;
@@ -13,20 +13,20 @@ prependpath(){
 
 # e.g:
 # PATH=
-# prependpath /usr/local/sbin
-# prependpath /usr/local/bin
-# prependpath /usr/sbin
-# prependpath /usr/bin
-# prependpath /sbin
-# prependpath /bin
-# prependpath $HOME/.local/bin
-# prependpath $HOME/bin
-# unset prependpath
+# prepend_path /usr/local/sbin
+# prepend_path /usr/local/bin
+# prepend_path /usr/sbin
+# prepend_path /usr/bin
+# prepend_path /sbin
+# prepend_path /bin
+# prepend_path $HOME/.local/bin
+# prepend_path $HOME/bin
+# unset prepend_path
 # export PATH
 
 
 # Add element as last element to PATH
-appendpath(){
+append_path(){
   case ":${PATH}:" in
   *":${1}:"*) ;;
   *         )  PATH="${PATH:+$PATH:}$1"
@@ -35,16 +35,15 @@ appendpath(){
 
 
 # Default  PATH
-initpath(){
+_path(){
 for x in \
   "$HOME/bin" \
-  "$HOME/.local/bin" \
-  "/usr/local/sbin" \
   "/usr/local/bin" \
-  "/usr/sbin" \
+  "/usr/local/sbin" \
   "/usr/bin" \
-  "/sbin" \
+  "/usr/sbin" \
   "/bin" \
+  "/sbin" \
   ; do
   [ -d "$x" ] || continue 
 	case ":${PATH}:" in
@@ -56,12 +55,11 @@ done
 
 
 # Set minimal PATH
-minpath(){
+_minpath(){
 for x in \
 	"$HOME/bin" \
-	"$HOME/.local/bin" \
-	"/usr/local/sbin" \
-    "/usr/local/bin" \
+	"/usr/local/bin" \
+    "/usr/local/sbin" \
 	"/usr/bin" \
 	; do
 	[ -d "$x" ] || continue
@@ -73,7 +71,7 @@ done
 }
 
 
-# Set default PATH
+# default
 defaultpath(){
   export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 }

@@ -1,5 +1,6 @@
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 export CARGO_HOME=$HOME/.cargo
+. "$HOME/.cargo/env"
 
 
 # Rust cross-compiler for android devices (armv7/aarch64) & qemu emulators
