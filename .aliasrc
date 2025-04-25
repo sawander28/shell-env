@@ -57,8 +57,18 @@ alias grhh='git reset HEAD --hard'
 alias gb='git branch -a'
 alias gt='git tag -l'
 
-alias portscan="nmap -Pn"
-alias myip="curl ipinfo.io/ip"
-err() { errstr $?; }
+#alias portscan="nmap -Pn"
 
-curltls(){ curl --proto '=https' --tlsv1.2 -sSf "${@}"; }
+# Some tiny functions
+
+err() {
+  errstr $?
+}
+
+myip(){
+  curl ipinfo.io/ip
+}
+
+curltls(){
+  curl --proto '=https' --tlsv1.2 -sSf "${@}"
+}

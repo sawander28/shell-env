@@ -2,20 +2,16 @@
 
 # Tiny little helper functions
 
+newline(){ printf '\n'; }
+
 # lookup current public ip-address
-myip(){
-    curl ipinfo.io/ip
-}
+myip(){ curl ipinfo.io/ip; }
 
 # Checks current connection running arti tor-proxy
-checktor(){
-    curl -socks5 -L 127.0.0.1:9050 "$@"
-}
+checktor(){ curl -socks5 -L 127.0.0.1:9050 "$@"; }
 
 # generate a random password using openssl to stdout
-function genpwd {
-	openssl rand -base64 48
-}
+function genpwd { openssl rand -base64 48; }
 
 # Starting emergency shell
 emergency_shell(){

@@ -38,7 +38,7 @@ envvar BROWSER          "chromium"
 envvar MAIL             ""
 envvar MPD_HOST         "${XDG_RUNTIME_DIR}/mpd.sock"
 envvar SSH_ASKPASS      "ssh-askpass-fullscreen"
-envvar SSH_AUTH_SOCK    "$(gpgconf --list-dir agent-ssh-socket"
+envvar SSH_AUTH_SOCK    "$(gpgconf --list-dir agent-ssh-socket)"
 envvar SSH_AGENT_PID    ""
 envvar GPG_TTY          $(tty)
-export GPG_AGENT_INFO   $(gpgconf --list-dir agent-socket)
+envvar GPG_AGENT_INFO   $(gpgconf --list-dir agent-socket)

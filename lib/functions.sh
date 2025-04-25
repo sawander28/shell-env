@@ -6,19 +6,18 @@ msg(){
 }
 
 info(){
-  printf " \033[1;32m*\033[0m ${*}\n"
+  printf "\033[1;32mINFO\033[0m ${*}\n"
 }
 
 warn(){
-  printf " \033[1;33m*\033[0m ${*}\n"
+  printf "\033[1;33mWARNING\033[0m ${*}\n"
 }
 
 error(){
-  printf " \033[1;31m*\033[0m ${*}\n" >&2
+  printf "\033[1;31mERROR\033[0m ${*}\n" >&2
 }
 
-ok() {
-    # bold/green
+ok(){
     printf "\033[1m\033[32m OK\033[m\n"
 }
 
@@ -27,7 +26,6 @@ die(){
   exit "$?"
 }
 
-# Yes/No helper
 yesno(){
     case "$1" in
         Yes|Y|1|true) return 0 ;;
