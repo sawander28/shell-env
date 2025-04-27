@@ -1,3 +1,3 @@
 
 
-sudo zfs load-key zdev
+#sudo zfs load-key zdev
