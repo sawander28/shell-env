@@ -1,11 +1,8 @@
 # direnv.toml
 
 [global]
-# bash_path = /usr/bin/bash
-# load_dotenv = false
-# strict_env = true
 hide_env_diff = true
 
 [whitelist]
-# prefix = [ "" ]
+prefix = [ "/home/wandsas/repos" ]
 exact = [ "/home/wandsas/.envrc" ]

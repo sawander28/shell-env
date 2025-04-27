@@ -1,9 +1,12 @@
-# direnvrc
+#!/bin/sh
 
 . ~/lib/colors.sh
 . ~/lib/functions.sh
 #. ~/lib/helpers.sh
 #. ~/lib/path.sh
+
+
+newline(){ printf "\n"; }
 
 prepend_path(){
   case ":$PATH:" in
@@ -12,24 +15,4 @@ prepend_path(){
   esac
 }
 
-err(){
-  errstr $?
-}
-
-myip(){
-  curl ipinfo.io/ip
-}
-
-curltls(){
-  curl --proto '=https' --tlsv1.2 -sSf "${@}"
-}
-
-checktor(){
-  curl -socks5 -L 127.0.0.1:9050 "$@"
-}
-
-genpwd {
-  openssl rand -base64 48
-}
-
-# vim: fenc=utf-8 ts=2 sts=2 sw=2 et
+msg "direnv loading ~/.config/direnv/direnvrc"
