@@ -26,7 +26,7 @@ alias lsl='ls -Alh'
 alias cls=clear
 alias md=mkdir
 alias rd=rmdir
-alias hy=history
+alias hi=history
 alias mo=more
 alias le=less
 alias hl='history | less'
@@ -42,7 +42,6 @@ alias po=popd
 # Tmux
 alias tmux='tmux -S ${XDG_RUNTIME_DIR}/tmux.default'
 alias tmls='tmux list-sessions'
-
 
 # Git 
 alias gcd='cd $(git rev-parse --show-toplevel)'
