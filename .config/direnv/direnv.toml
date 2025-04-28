@@ -5,4 +5,8 @@ hide_env_diff = true
 
 [whitelist]
 prefix = [ "/home/wandsas/repos" ]
-exact = [ "/home/wandsas/.envrc", "/nfs/wandsas/.envrc" ]
+exact = [
+  "/home/wandsas/.envrc",
+  "/nfs/wandsas/.envrc",
+  "/home/wandsas/XBPS/.envrc"
+]

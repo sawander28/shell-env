@@ -2,6 +2,12 @@
 
 umask 022
 
+if [ -d ~/.bashrc.d ]; then
+  for sh in ~/.bashrc.d/*.sh; do
+    [ -r $sh ] && . $sh
+  done
+  unset sh
+fi
 
 alias ip='ip --color=auto'
 alias grep='grep --color=auto'
@@ -14,11 +20,4 @@ alias free='free -h'
 alias ds='du -sh'
 alias cls='tput clear'
 
-if [ -d ~/.bashrc.d ]; then
-  for sh in ~/.bashrc.d/*.sh; do
-    [ -r $sh ] && . $sh
-  done
-  unset sh
-fi
-
-[ -f ~/.aliasrc ] && . ~/.aliasrc
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
