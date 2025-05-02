@@ -1,4 +1,3 @@
-
 # -*- color ls intialization -*-
 
 # Skip for noninteractive shells

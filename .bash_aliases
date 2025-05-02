@@ -71,3 +71,8 @@ myip(){
 curltls(){
   curl --proto '=https' --tlsv1.2 -sSf "${@}"
 }
+
+alias vmls="sudo virsh list --all"
+alias vmst="sudo virsh start $@"
+alias vmsh="sudo virsh shutdown $@"
+alias   vm="sudo virsh $@"

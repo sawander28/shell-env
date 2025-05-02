@@ -12,6 +12,7 @@ export LANG LC_COLLATE
 : ${VISUAL:=vim}
 : ${BROWSER:=chromium}
 export SHELL PAGER EDITOR VISUAL BROWSER
+export SYSTEMD_PAGER
 
 # XDG path variables
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
