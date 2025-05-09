@@ -4,8 +4,9 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias ls='/usr/bin/ls --color=auto'
+alias ls='ls --color=auto'
 alias ip='ip --color=auto'
+alias diff='diff --color=auto'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
@@ -73,6 +74,6 @@ curltls(){
 }
 
 alias vmls="sudo virsh list --all"
-alias vmst="sudo virsh start $@"
-alias vmsh="sudo virsh shutdown $@"
+alias vmstart="sudo virsh start $@"
+alias vmshutdown="sudo virsh shutdown $@"
 alias   vm="sudo virsh $@"
