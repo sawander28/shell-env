@@ -1,6 +1,3 @@
-#MANPAGER="less -R --use-color -Dd+r -Du+b"
-##export MANPAGER
-
 man() {
     LESS_TERMCAP_mb=$(printf "\e[01;33m") \
     LESS_TERMCAP_md=$(printf "\e[01;33m") \

@@ -11,7 +11,6 @@ prepend_path(){
   esac
 }
 
-# e.g:
 # PATH=
 # prepend_path /usr/local/sbin
 # prepend_path /usr/local/bin
@@ -35,7 +34,7 @@ append_path(){
 
 
 # Default  PATH
-_path(){
+path(){
 for x in \
   "$HOME/bin" \
   "/usr/local/bin" \
@@ -55,7 +54,7 @@ done
 
 
 # Set minimal PATH
-_minpath(){
+_path(){
 for x in \
 	"$HOME/bin" \
 	"/usr/local/bin" \

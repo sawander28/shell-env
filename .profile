@@ -1,5 +1,3 @@
-# ~/.profile wandsas 202502
-
 # POSIX variables
 # http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap08.html#tag_08_03
 : ${LANG:=en_US.UTF-8}
@@ -10,7 +8,7 @@ export LANG LC_COLLATE
 : ${PAGER:=less}
 : ${EDITOR:=vim}
 : ${VISUAL:=vim}
-: ${BROWSER:=chromium}
+: ${BROWSER:=firefox}
 export SHELL PAGER EDITOR VISUAL BROWSER
 export SYSTEMD_PAGER
 
@@ -19,8 +17,9 @@ export SYSTEMD_PAGER
 : ${XDG_CONFIG_HOME:=$HOME/.config}
 : ${XDG_CACHE_HOME:=$HOME/.cache}
 : ${XDG_DATA_HOME:=$HOME/.local/share}
+: ${XDG_STATE_HOME:=$HOME/.local/state}
 : ${XDG_RUNTIME_DIR:=/run/user/$(id -u)}
-export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_RUNTIME_DIR
+export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME XDG_RUNTIME_DIR
 
 # XDG system path variable
 # https://standards.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html
