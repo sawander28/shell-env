@@ -11,7 +11,7 @@ GIT_PS1_STATESEPARATOR="/"
 GIT_PS1_COMPRESSSPARSESTATE="?"
 GIT_PS1_DESCRIBE_STYLE="branch,describe,tag"
 
-PS1+='\[\e[01;33m\]\u@\h\[\e[1m\]$(__git_ps1 " (%s)")\[\e[01;36m\] \W \$\[\e[00m\] '
+PS1+='\[\e[01;32m\]\u@\h\[\e[00m\]$(__git_ps1 " (%s)")\[\e[01;37m\] \W \$\[\e[00m\] '
 }
 
 
