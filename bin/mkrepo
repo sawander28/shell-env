@@ -10,7 +10,7 @@ bocyan='\033[1;36m'
 
 # upstream
 GIT_USER="git"
-GIT_HOST="rpi3.local"
+GIT_HOST="rpi3.home.local"
 GIT_ROOT="/home/git/repos"
 GIT_UPSTREAM="${GIT_USER}@${GIT_HOST}:${GIT_ROOT##*/}"
 
@@ -49,7 +49,7 @@ if [ -d "${REPO_BASEDIR}/.git" ]; then
   PREV="$PWD"
   cd "${REPO_BASEDIR}"
   git remote rename origin upstream >/dev/null 2>&1
-  git remote add origin git@rpi3.local:repos/${REPO_NAME}
+  git remote add origin git@rpi3.home.local:repos/${REPO_NAME}
   #git branch --set-upstream-to=origin/master 
   cd "${PREV}"
   info "Found existing repo $bocyan$REPO$reset"

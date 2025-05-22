@@ -1,9 +1,14 @@
-
-HISTCONTROL=ignoredups
-HISTFILE=${XDG_CACHE_HOME}/bash_history
-HISTFILESIZE=1000
+# bash history
+# don't put duplicate lines or lines starting with space in the history
+HISTCONTROL=ignoreboth
+HISTFILESIZE=2000
 HISTSIZE=1000
+HISTFILE=${XDG_CACHE_HOME}/bash_history
 
+# check window size after each command and, if necessary, update LINES & COLUMNS
+shopt -s checkwinsize
+
+# less history
 LESS="-R -M"
 LESSHISTFILE="${XDG_CACHE_HOME}/less_history"
 LESSOPEN=""
