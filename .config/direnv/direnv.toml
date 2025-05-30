@@ -7,6 +7,6 @@ hide_env_diff = true
 prefix = [ "/home/wandsas/repos" ]
 exact = [
   "/home/wandsas/.envrc",
-  "/nfs/wandsas/.envrc",
+  "/srv/nfs/home/wandsas/.envrc",
   "/home/wandsas/XBPS/.envrc"
 ]
