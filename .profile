@@ -4,12 +4,11 @@
 : ${LC_COLLATE:=C}
 export LANG LC_COLLATE
 
-: ${SHELL:=bash}
-: ${PAGER:=less}
 : ${EDITOR:=vim}
 : ${VISUAL:=vim}
+: ${PAGER:=less}
 : ${BROWSER:=firefox}
-export SHELL PAGER EDITOR VISUAL BROWSER
+export  EDITOR VISUAL PAGER BROWSER
 export SYSTEMD_PAGER
 
 # XDG path variables
@@ -25,20 +24,9 @@ export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME XDG_RUNTIME_D
 # https://standards.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html
 export XDG_DATA_DIRS=${XDG_DATA_HOME}:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}
 
-# Required for dbus/xdg-dekstop-portal session
-: ${XDG_CURRENT_DESKTOP:=sway}
-: ${XDG_SESSION_DESKTOP:=sway}
-: ${XDG_SESSION_TYPE:=wayland}
-: ${XCURSOR_THEME:=plan9}
-: ${XCURSOR_SIZE:=24}
-export XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE XCURSOR_NAME XCURSOR_SIZE
-
-: ${DBUS_SESSION_BUS_ADDRESS:=unix:path=${XDG_RUNTIME_DIR}/bus}
-export DBUS_SESSION_BUS_ADDRESS
-
+# runit user services
 : ${SVDIR:=$HOME/service}
 export SVDIR
-
 
 if [ -d ~/.profile.d ]; then
   for sh in ~/.profile.d/*.sh; do

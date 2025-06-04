@@ -77,3 +77,7 @@ alias vmls="sudo virsh list --all"
 alias vmstart="sudo virsh start $@"
 alias vmshutdown="sudo virsh shutdown $@"
 alias   vm="sudo virsh $@"
+
+finger_banner(){
+    curl -sL https://www.kernel.org/finger_banner
+}
