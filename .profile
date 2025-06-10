@@ -7,7 +7,7 @@ export LANG LC_COLLATE
 : ${EDITOR:=vim}
 : ${VISUAL:=vim}
 : ${PAGER:=less}
-: ${BROWSER:=firefox}
+#: ${BROWSER:=firefox}
 export  EDITOR VISUAL PAGER BROWSER
 export SYSTEMD_PAGER
 

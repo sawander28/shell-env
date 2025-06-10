@@ -1,5 +1,18 @@
 # -*- mode: sh -*-
 
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+alias ip='ip --color=auto'
+alias ls='/usr/bin/ls --color=auto'
+
+alias ll='ls -lh'
+alias la='ls -a'
+alias  l='ls -lha'
+
+alias df='df -h'
+alias ds='du -sh'
+alias free='free -h'
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -24,27 +37,19 @@ alias lsn='ls -hrtl *$@* | tail'
 alias lso='ls -hrtl *$@* | head'
 alias lsl='ls -Alh'
 
-alias cls=clear
-alias md=mkdir
-alias rd=rmdir
 alias hi=history
 alias mo=more
 alias le=less
 alias hl='history | less'
-alias ct='tar -cvpf'
-alias xt='tar -xvpf'
-alias df='df -h'
-alias free='free -h'
-alias ds='du -sh'
-alias res='cd ~ && tput clear'
-alias pu=pushd
-alias po=popd
 
-# Tmux
+alias cls=clear
+alias res='cd ~ && tput clear'
+
+# tmux
 alias tmux='tmux -S ${XDG_RUNTIME_DIR}/tmux.default'
 alias tmls='tmux list-sessions'
 
-# Git 
+# git
 alias gcd='cd $(git rev-parse --show-toplevel)'
 alias ga='git add .'
 alias gaa='git add --all'
@@ -57,27 +62,21 @@ alias grhh='git reset HEAD --hard'
 alias gb='git branch -a'
 alias gt='git tag -l'
 
-#alias portscan="nmap -Pn"
-
-# Some tiny functions
-
-err() {
-  errstr $?
-}
-
-myip(){
-  curl ipinfo.io/ip
-}
-
-curltls(){
-  curl --proto '=https' --tlsv1.2 -sSf "${@}"
-}
-
+# virsh
+alias   vm="sudo virsh $@"
 alias vmls="sudo virsh list --all"
 alias vmstart="sudo virsh start $@"
 alias vmshutdown="sudo virsh shutdown $@"
-alias   vm="sudo virsh $@"
 
-finger_banner(){
-    curl -sL https://www.kernel.org/finger_banner
-}
+#alias portscan="nmap -Pn"
+
+
+err() { errstr $?; }
+
+myip(){ dig +short myip.opendns.com @resolver1.opendns.com; }
+
+my_ip(){ curl ipinfo.io/ip; }
+
+curltls(){ curl --proto '=https' --tlsv1.2 -sSf "${@}"; }
+
+finger_banner(){ curl -sL https://www.kernel.org/finger_banner; }

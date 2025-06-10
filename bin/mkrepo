@@ -2,22 +2,19 @@
 
 script="${0##*/}"
 
-reset="\033[0m"
-bold="\033[1m"
-bocyan='\033[1;36m'
-
+. /home/wandsas/lib/colors.sh
 . /home/wandsas/lib/functions.sh
 
 # upstream
 GIT_USER="git"
-GIT_HOST="rpi3.home.local"
-GIT_ROOT="/home/git/repos"
-GIT_UPSTREAM="${GIT_USER}@${GIT_HOST}:${GIT_ROOT##*/}"
+GIT_HOST="rpi3.lan"
+GIT_ROOT="/repos"
+GIT_UPSTREAM="${GIT_USER}@${GIT_HOST}:${GIT_ROOT}"
 
 # local
 REPO_BASEDIR="${PWD}"
 REPO="${1}"
-REPO_NAME="${1}.git"
+REPO_NAME="${1}"
 REPO_DESCRIPTION="${2}"
 
 
@@ -49,8 +46,8 @@ if [ -d "${REPO_BASEDIR}/.git" ]; then
   PREV="$PWD"
   cd "${REPO_BASEDIR}"
   git remote rename origin upstream >/dev/null 2>&1
-  git remote add origin git@rpi3.home.local:repos/${REPO_NAME}
-  #git branch --set-upstream-to=origin/master 
+  git remote add origin ${GIT_UPSTREAM}/${REPO_NAME}
+  
   cd "${PREV}"
   info "Found existing repo $bocyan$REPO$reset"
   info "Changed remote origin to upstream"
@@ -61,8 +58,8 @@ else
   tmpdir="$(mktemp -d /tmp/${REPO}.XXXXXX)"
   git clone "${GIT_UPSTREAM}/${REPO_NAME}" "${tmpdir}/${REPO}" >/dev/null 2>&1
   STATUS="$?"
-  cp -Rf "${tmpdir}/${REPO}/.git" "${REPO_BASEDIR}"
-  #rm -Rf "${tmpdir}"
+  cp -Rf "${tmpdir}/${REPO}" "${REPO_BASEDIR}"
+  rm -Rf "${tmpdir}"
   info "Git repo $bocyan$REPO$reset initialized."
 fi
 
