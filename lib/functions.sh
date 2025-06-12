@@ -52,3 +52,7 @@ prepend_path(){
 datetime(){
     echo "$(date +'%Y%m%d_%H%M%S')"
 }
+
+timestamp(){
+    echo "$(date +'%Y%m%d')"
+}
