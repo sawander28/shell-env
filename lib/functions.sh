@@ -48,3 +48,7 @@ prepend_path(){
            *) PATH="$1${PATH:+:$PATH}";;
     esac
 }
+
+datetime(){
+    echo "$(date +'%Y%m%d_%H%M%S')"
+}

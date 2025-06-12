@@ -34,10 +34,23 @@ alias grhh='git reset HEAD --hard'
 alias gb='git branch -a'
 alias gt='git tag -l'
 
-myip(){ dig +short myip.opendns.com @resolver1.opendns.com; }
+# nmap portscan
+portscan(){ nmap -Pn $@; }
 
-my_ip(){ curl ipinfo.io/ip; }
+myip(){ curl ipinfo.io/ip; }
+# curl -4 icanhazip.com
+# curl ifconfig.me
+# curl ipecho.net/plain
+
+# TXT dns text record, resource record to associate arbitrary text with a host
+myipv4(){ dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com; }
+
+myipv6(){ dig -6 TXT +short o-o.myaddr.l.google.com @ns1.google.com; }
 
 curltls(){ curl --proto '=https' --tlsv1.2 -sSf "${@}"; }
 
+# Linux default Tor proxy port 9050
+checktor(){ curl --socks5-hostname localhost:9050 https://check.torproject.org; }
+
+# get linux kernel current release versions
 finger_banner(){ curl -sL https://www.kernel.org/finger_banner; }
