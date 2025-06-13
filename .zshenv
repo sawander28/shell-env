@@ -1,13 +1,8 @@
-# ~/.zshenv
-
-# This gets run even for non-interactive shells,
-# so keep it as fast as possible.
 
 export ZDOTDIR=${ZDOTDIR:-$HOME}
 
 # Stop bad system-wide scripts interfering.
 setopt NO_global_rcs
-
 setopt extended_glob
 
 # Path
@@ -15,7 +10,7 @@ typeset -U PATH path
 export PATH
 
 path=(
-    $ZDOTDIR/{.local/,.npm-global/,.cask/,}bin
+    $ZDOTDIR/bin
     /usr/local/{bin,sbin}
     $path
     )
@@ -49,6 +44,3 @@ for dirname in $fpath; do
     esac
     (( $#fns )) && autoload "$fns[@]"
 done
-
-# vim:fenc=utf-8:ft=zsh:
-. "$HOME/.cargo/env"
