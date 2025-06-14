@@ -13,6 +13,8 @@ prependpath "/usr/local/bin"
 [ -n "${GOPATH}" ]     && prependpath "${GOPATH}/bin"
 [ -n "${CARGO_HOME}" ] && prependpath "${CARGO_HOME}/bin"
 [ -n "${HOME}/perl5" ] && prependpath "${HOME}/perl5/bin"
+[ -n "${JAVA_HOME}" ] && prependpath "${JAVA_HOME}/bin"
+prependpath "${HOME}/.local/bin"
 prependpath "${HOME}/bin"
 unset prependpath
 export PATH

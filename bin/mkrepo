@@ -14,7 +14,7 @@ GIT_UPSTREAM="${GIT_USER}@${GIT_HOST}:${GIT_ROOT}"
 # local
 REPO_BASEDIR="${PWD}"
 REPO="${1}"
-REPO_NAME="${1}"
+REPO_NAME="${1}.git"
 REPO_DESCRIPTION="${2}"
 
 

@@ -8,3 +8,7 @@ HISTFILE=~/.cache/bash_history
 # check window size after each command and, if necessary, update LINES & COLUMNS
 shopt -s checkwinsize
 
+complete -F _root_command doas
+#complete -cf doas
+
+
