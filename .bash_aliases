@@ -17,10 +17,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-# tmux
-alias tmux='tmux -S ${XDG_RUNTIME_DIR}/tmux.default'
-alias tmls='tmux list-sessions'
-
 # git
 alias gcd='cd $(git rev-parse --show-toplevel)'
 alias ga='git add .'
