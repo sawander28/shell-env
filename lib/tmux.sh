@@ -14,3 +14,5 @@ _tmac_complete() {
     COMPREPLY=( $(compgen -W "$sessions" -- "$word") )
 }
 complete -F _tmac_complete tmac
+
+
