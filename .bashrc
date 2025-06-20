@@ -18,3 +18,4 @@ fi
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
+. "$HOME/.cargo/env"
