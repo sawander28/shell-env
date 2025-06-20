@@ -7,9 +7,8 @@ export LANG LC_COLLATE
 : ${EDITOR:=vim}
 : ${VISUAL:=vim}
 : ${PAGER:=less}
-#: ${BROWSER:=firefox}
-export  EDITOR VISUAL PAGER BROWSER
-export SYSTEMD_PAGER
+: ${BROWSER:=firefox}
+export  EDITOR VISUAL PAGER BROWSER SYSTEMD_PAGER=""
 
 # XDG path variables
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
@@ -27,6 +26,9 @@ export XDG_DATA_DIRS=${XDG_DATA_HOME}:${XDG_DATA_DIRS:-/usr/local/share:/usr/sha
 # runit user services
 : ${SVDIR:=$HOME/service}
 export SVDIR
+
+PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin"
+export PATH
 
 if [ -d ~/.profile.d ]; then
   for sh in ~/.profile.d/*.sh; do
