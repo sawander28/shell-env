@@ -1,0 +1,24 @@
+#!/bin/bash
+
+. /home/wandsas/lib/functions.sh
+
+script=${0##*/}
+
+SOURCE="$1"
+SOURCE_NAME="${SOURCE/.*}"
+SOURCE_EXTENSION="${SOURCE/*.}"
+TARGET="${SOURCE_NAME}.m4a"
+
+if [ "$#" -ne 1 ]; then
+    info "Usage: $script <audiofile>"
+    exit 1
+fi
+
+info "source file: $SOURCE"
+info "source name: $SOURCE_NAME"
+info "source extension: $SOURCE_EXTENSION"
+info "target file: $TARGET"
+
+#ffmpeg -i "$SOURCE" -c:a libfdk_aac -profile:a aac_he_v2 -b:a 128k "$TARGET"
+
+#ffmpeg -i "$SOURCE" -c:a aac -q:a 2 "$TARGET"
