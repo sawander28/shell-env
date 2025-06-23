@@ -39,4 +39,4 @@ myip(){ curl ipinfo.io/ip; }
 finger_banner(){ curl -sL https://www.kernel.org/finger_banner; }
 
 # check tor is running
-check_tor(){ curl -x socks5h://127.0.0.1:9150 -s https://torproject.org/api/ip; }
+checktor(){ curl -x socks5h://127.0.0.1:9150 -s https://torproject.org/api/ip; }
