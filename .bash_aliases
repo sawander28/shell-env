@@ -32,7 +32,10 @@ alias gt='git tag -l'
 # nmap portscan
 portscan(){ nmap -Pn $@; }
 
+# my external ip (WAN)
 myip(){ curl ipinfo.io/ip; }
 
 # get linux kernel current release versions
 finger_banner(){ curl -sL https://www.kernel.org/finger_banner; }
+
+container_registry() { podman info -f json | jq '.registries[search]'; }

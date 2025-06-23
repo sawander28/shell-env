@@ -14,11 +14,21 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
+if [ "$SOURCE" = "$TARGET" ]; then
+    TARGET="${SOURCE_NAME}-new.m4a"
+    info "Renaming target file: ${TARGET}"
+fi
+
 info "source file: $SOURCE"
-info "source name: $SOURCE_NAME"
-info "source extension: $SOURCE_EXTENSION"
+#info "source name: $SOURCE_NAME"
+#info "source extension: $SOURCE_EXTENSION"
 info "target file: $TARGET"
 
-#ffmpeg -i "$SOURCE" -c:a libfdk_aac -profile:a aac_he_v2 -b:a 128k "$TARGET"
+# High-Efficiency AAC
+#ffmpeg -i $SOURCE -c:a libfdk_aac -profile:a aac_he_v2 -b:a 32k "$TARGET"
 
-#ffmpeg -i "$SOURCE" -c:a aac -q:a 2 "$TARGET"
+# constant bit rate using -b:a
+# ffmpeg -i "$SOURCE" -c:a aac -b:a 160k "$TARGET"
+
+# variable bit rate using -q:a
+ffmpeg -i "$SOURCE" -c:a aac -q:a 2 "$TARGET"
