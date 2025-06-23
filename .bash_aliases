@@ -38,4 +38,5 @@ myip(){ curl ipinfo.io/ip; }
 # get linux kernel current release versions
 finger_banner(){ curl -sL https://www.kernel.org/finger_banner; }
 
-container_registry() { podman info -f json | jq '.registries[search]'; }
+# check tor is running
+check_tor(){ curl -x socks5h://127.0.0.1:9150 -s https://torproject.org/api/ip; }
