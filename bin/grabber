@@ -28,7 +28,7 @@ info "target file: $TARGET"
 #ffmpeg -i $SOURCE -c:a libfdk_aac -profile:a aac_he_v2 -b:a 32k "$TARGET"
 
 # constant bit rate using -b:a
-# ffmpeg -i "$SOURCE" -c:a aac -b:a 160k "$TARGET"
+ffmpeg -i "$SOURCE" -c:a aac -b:a 120k "$TARGET"
 
 # variable bit rate using -q:a
-ffmpeg -i "$SOURCE" -c:a aac -q:a 2 "$TARGET"
+#ffmpeg -i "$SOURCE" -c:a aac -q:a 2 "$TARGET"

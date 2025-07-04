@@ -38,4 +38,3 @@ if [ -d ~/.profile.d ]; then
 fi
 
 [ -n $BASH_VERSION ] && [ -f ~/.bashrc ] && . ~/.bashrc
-. "$HOME/.cargo/env"

@@ -17,5 +17,3 @@ if [ -d ~/.bashrc.d ]; then
 fi
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
-
-. "$HOME/.cargo/env"
