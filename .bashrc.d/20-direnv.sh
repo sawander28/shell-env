@@ -1,4 +1,3 @@
-
 # -*- direnv hook -*-
 
 # Skip for noniteractive shells
