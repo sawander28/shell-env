@@ -23,6 +23,8 @@ export XDG_DATA_DIRS=${XDG_DATA_HOME}:${XDG_DATA_DIRS:-/usr/local/share:/usr/sha
 # Runit user services
 : ${SVDIR:=$HOME/service}
 export SVDIR
+
+export XAUTHORITY=~/.config/xorg/Xauthority
 # Default user PATH
 export PATH="~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin"
 
