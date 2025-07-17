@@ -75,4 +75,13 @@ defaultpath(){
   export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 }
 
+remove_path() {
+   local p d
+   p=":$1:"
+   d=":$PATH:"
+   d=${d//$p/:}
+   d=${d/#:/}
+   PATH=${d/%:/}
+}
+
 # vim: fenc=utf-8 ft=sh ts=4 sts=4 sw=4

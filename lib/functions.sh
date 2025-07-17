@@ -49,6 +49,15 @@ prepend_path(){
     esac
 }
 
+remove_path() {
+   local p d
+   p=":$1:"
+   d=":$PATH:"
+   d=${d//$p/:}
+   d=${d/#:/}
+   PATH=${d/%:/}
+}
+
 datetime(){
     echo "$(date +'%Y%m%d_%H%M%S')"
 }
