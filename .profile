@@ -26,7 +26,7 @@ export SVDIR
 
 export XAUTHORITY=~/.config/xorg/Xauthority
 # Default user PATH
-export PATH="~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin"
+export PATH="~/bin:~/.local/bin:/usr/local/bin:/usr/bin"
 
 if [ -d ~/.profile.d ]; then
   for sh in ~/.profile.d/*.sh; do
