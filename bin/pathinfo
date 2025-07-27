@@ -1,0 +1,16 @@
+#!/bin/sh -e
+
+. ~/lib/functions.sh
+
+OLDIFS=$IFS
+IFS=':'
+
+msg "PATH"
+for x in $PATH
+do
+  msg "$x"
+done
+
+IFS=$OIFS
+
+exit $?
