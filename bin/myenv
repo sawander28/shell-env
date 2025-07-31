@@ -11,32 +11,11 @@ envvar(){
   printf '%s'  "$2" > "${envdir}/${1}"
 }
 
-envvar LANG                "$LANG"
-envvar LC_COLLATE          "$LC_COLLATE"
-envvar BROWSER             "$BROWSER"
-envvar EDITOR              "$EDITOR"
-#envvar PAGER               "$PAGER"
-#envvar VISUAL              "$VISUAL"
+envvar XDG_RUNTIME_DIR          "$XDG_RUNTIME_DIR"
+envvar DBUS_SESSION_BUS_ADDRESS "$DBUS_SESSION_BUS_ADDRESS"
+envvar WAYLAND_DISPLAY          "$WAYLAND_DISPLAY"
+envvar DISPLAY                  "$DISPLAY"
+envvar SWAYSOCK                 "$SWAYSOCK"
 
-envvar XDG_CURRENT_DESKTOP "$XDG_CURRRENT_DESKTOP"
-#envvar XDG_SESSION_DESKTOP "$XDG_SESSION_DESKTOP"
-envvar XDG_SESSION_TYPE    "$XDG_SESSION_TYPE"
-
-#envvar XDG_CONFIG_HOME     "$XDG_CONFIG_HOME"
-#envvar XDG_DATA_HOME       "$XDG_DATA_HOME"
-#envvar XDG_STATE_HOME      "$XDG_STATE_HOME"
-#envvar XDG_CACHE_HOME      "$XDG_CACHE_HOME"
-
-envvar XDG_RUNTIME_DIR     "$XDG_RUNTIME_DIR"
-#envvar XDG_DATA_DIRS       "$XDG_DATA_DIRS"
-
-envvar XCURSOR_NAME        "$XCURSOR_NAME"
-envvar XCURSOR_SIZE        "$XCURSOR_SIZE"
-
-#envvar GPG_AGENT_INFO      "$GPG_AGENT_INFO"
-#envvar SSH_AUTH_SOCK       "$SSH_AUTH_SOCK"
-
-envvar WAYLAND_DISPLAY     "$WAYLAND_DISPLAY"
-envvar DISPLAY             "$DISPLAY"
-envvar SWAYSOCK            "$SWAYSOCK"
-envvar I3SOCK              "$I3SOCK"
+envvar XDG_SESSION_DESKTOP      "$XDG_SESSION_DESKTOP"
+envvar XDG_SESSION_TYPE         "$XDG_SESSION_TYPE"
