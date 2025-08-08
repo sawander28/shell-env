@@ -1,5 +1,6 @@
 
-export ZDOTDIR=${ZDOTDIR:-$HOME}
+: ${ZDOTDIR:=$HOME}
+export ZDOTDIR
 
 # Stop bad system-wide scripts interfering.
 setopt NO_global_rcs
@@ -40,7 +41,7 @@ fpath=(
 for dirname in $fpath; do
     case "$dirname" in
 	(${ZDOTDIR}/.zsh*) fns=( $dirname/*~*~(-N.x:t) ) ;;
-	              *) fns=( $dirname/*~*~(-N.:t ) ) ;;
+	              i*) fns=( $dirname/*~*~(-N.:t ) ) ;;
     esac
     (( $#fns )) && autoload "$fns[@]"
 done

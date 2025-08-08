@@ -92,7 +92,7 @@ fi
 
 configure_prompt() {
     #prompt_symbol=㉿
-    #[ "$EUID" -eq 0 ] && prompt_symbol=💀
+    [ "$EUID" -eq 0 ] && prompt_symbol=💀
     prompt_symbol=💀
     case "$PROMPT_ALTERNATIVE" in
         twoline)
@@ -213,8 +213,6 @@ precmd() {
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -240,18 +238,13 @@ alias ll='ls -lh'
 alias la='ls -a'
 alias l='ls -lha'
 alias df='df -h'
+alias free='free -h'
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     # change suggestion color
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
-fi
-
-# enable history-substring-search on page-up/page-down
-if [ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
-    . /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-    # @TODO find keys
 fi
 
 # enable command-not-found if installed
