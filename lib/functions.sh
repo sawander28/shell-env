@@ -65,3 +65,7 @@ datetime(){
 timestamp(){
     echo "$(date +'%Y%m%d')"
 }
+
+is_installed(){
+    test command -v "$1"
+}
