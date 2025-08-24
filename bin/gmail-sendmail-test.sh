@@ -8,6 +8,7 @@ Subject: MSMTP sendmail test
 MSMTP sendmail test
 
 Managing my passwords with pass - the standard unix password manager
+https://www.passwordstore.org
 
 EOF
 
