@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# High Quality Encoders
-# https://trac.ffmpeg.org/wiki/Encode/HighQualityAudio
-
 . /home/wandsas/lib/functions.sh
 
 script=${0##*/}
