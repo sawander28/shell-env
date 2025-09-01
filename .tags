@@ -1,0 +1,239 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/wandsas/repos/wandsas/shell-env/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+ACPI-	.zsh/lib/key-bindings.zsh	/^	eval function ACPI-${cmd} \\{ \/etc\/acpi\/default.sh button\/${cmd} \\}$/;"	f
+ACPI-CD-	.zsh/lib/key-bindings.zsh	/^	eval function ACPI-CD-${cmd} \\{ \/etc\/acpi\/default.sh cd\/${cmd} \\}$/;"	f
+BUG_URL	bin/repo	/^BUG_URL = "https:\/\/issues.gerritcodereview.com\/issues\/new?component=1370071"$/;"	v
+CloneFailure	bin/repo	/^class CloneFailure(Exception):$/;"	c
+EOF	bin/gmail-sendmail-test.sh	/^cat << EOF > message.txt$/;"	h
+EOF	bin/ipr	/^cat <<-EOF$/;"	h
+EOF	bin/nginx-here	/^cat >\/tmp\/.nginx-here.$$\/cfg <<EOF$/;"	h
+EOF	bin/qemu-vlan	/^	cat <<EOF >${df}$/;"	h
+EOF	bin/qemu-vlan	/^	cat <<EOF >${fc}$/;"	h
+EOF	bin/qemu-vlan	/^	cat <<EOF >>$f$/;"	h
+EOF_CONFIG	bin/qemu-vlan	/^	cat <<EOF_CONFIG >${cf}$/;"	h
+EOH	bin/ips	/^  cat <<-EOH$/;"	h
+EOH	bin/qemu-vlan	/^	cat <<EOH$/;"	h
+GIT	bin/repo	/^GIT = "git"  # our git command$/;"	v
+GetParser	bin/repo	/^def GetParser():$/;"	f
+GitVersion	bin/repo	/^class GitVersion(NamedTuple):$/;"	c
+InitParser	bin/repo	/^def InitParser(parser):$/;"	f
+KEYRING_VERSION	bin/repo	/^KEYRING_VERSION = (2, 3)$/;"	v
+MAINTAINER_KEYS	bin/repo	/^MAINTAINER_KEYS = """$/;"	v
+MIN_GIT_VERSION	bin/repo	/^MIN_GIT_VERSION = (1, 7, 9)  # minimum supported git version$/;"	v
+MIN_PYTHON_VERSION_HARD	bin/repo	/^MIN_PYTHON_VERSION_HARD = (3, 6)$/;"	v
+MIN_PYTHON_VERSION_SOFT	bin/repo	/^MIN_PYTHON_VERSION_SOFT = (3, 6)$/;"	v
+NeedSetupGnuPG	bin/repo	/^def NeedSetupGnuPG():$/;"	f
+ParseGitVersion	bin/repo	/^def ParseGitVersion(ver_str=None):$/;"	f
+REPO_MAIN	bin/repo	/^REPO_MAIN = S_repo + "\/main.py"  # main script$/;"	v
+REPO_REV	bin/repo	/^    REPO_REV = "stable"$/;"	v
+REPO_REV	bin/repo	/^REPO_REV = os.environ.get("REPO_REV")$/;"	v
+REPO_TRACE	bin/repo	/^    REPO_TRACE = "REPO_TRACE"$/;"	v	class:Trace
+REPO_URL	bin/repo	/^    REPO_URL = "https:\/\/gerrit.googlesource.com\/git-repo"$/;"	v
+REPO_URL	bin/repo	/^REPO_URL = os.environ.get("REPO_URL", None)$/;"	v
+REQUIREMENTS_NAME	bin/repo	/^    REQUIREMENTS_NAME = "requirements.json"$/;"	v	class:Requirements
+Requirements	bin/repo	/^class Requirements:$/;"	c
+S_manifests	bin/repo	/^S_manifests = "manifests"  # special manifest repository$/;"	v
+S_repo	bin/repo	/^S_repo = "repo"  # special repo repository$/;"	v
+SetGitTrace2ParentSid	bin/repo	/^def SetGitTrace2ParentSid(env=None):$/;"	f
+SetupGnuPG	bin/repo	/^def SetupGnuPG(quiet):$/;"	f
+Trace	bin/repo	/^class Trace:$/;"	c
+VERSION	bin/repo	/^VERSION = (2, 54)$/;"	v
+\x20renumber	.tmux.conf	/^set -s command-alias[100] renumber='move-window -r'$/;"	k
+_CheckGitVersion	bin/repo	/^def _CheckGitVersion():$/;"	f
+_Checkout	bin/repo	/^def _Checkout(cwd, remote_ref, rev, quiet):$/;"	f
+_Clone	bin/repo	/^def _Clone(url, cwd, clone_bundle, quiet, verbose):$/;"	f
+_DownloadBundle	bin/repo	/^def _DownloadBundle(url, cwd, quiet, verbose):$/;"	f
+_ExpandAlias	bin/repo	/^def _ExpandAlias(name):$/;"	f
+_Fetch	bin/repo	/^def _Fetch(url, cwd, src, quiet, verbose):$/;"	f
+_FindRepo	bin/repo	/^def _FindRepo():$/;"	f
+_GetRepoConfig	bin/repo	/^def _GetRepoConfig(name):$/;"	f
+_Help	bin/repo	/^def _Help(args):$/;"	f
+_ImportBundle	bin/repo	/^def _ImportBundle(cwd):$/;"	f
+_Init	bin/repo	/^def _Init(args):$/;"	f
+_InitHttp	bin/repo	/^def _InitHttp():$/;"	f
+_NoCommands	bin/repo	/^def _NoCommands(cmd):$/;"	f
+_NotInstalled	bin/repo	/^def _NotInstalled():$/;"	f
+_Options	bin/repo	/^class _Options:$/;"	c
+_ParseArguments	bin/repo	/^def _ParseArguments(args):$/;"	f
+_RunSelf	bin/repo	/^def _RunSelf(wrapper_path):$/;"	f
+_SetConfig	bin/repo	/^def _SetConfig(cwd, name, value):$/;"	f
+_SetDefaultsTo	bin/repo	/^def _SetDefaultsTo(gitdir):$/;"	f
+_Usage	bin/repo	/^def _Usage():$/;"	f
+_Version	bin/repo	/^def _Version():$/;"	f
+__git_zsh_bash_func	.zsh/functions/git-completion.sh	/^__git_zsh_bash_func ()$/;"	f
+__git_zsh_cmd_alias	.zsh/functions/git-completion.sh	/^__git_zsh_cmd_alias ()$/;"	f
+__git_zsh_cmd_all	.zsh/functions/git-completion.sh	/^__git_zsh_cmd_all ()$/;"	f
+__git_zsh_cmd_common	.zsh/functions/git-completion.sh	/^__git_zsh_cmd_common ()$/;"	f
+__git_zsh_main	.zsh/functions/git-completion.sh	/^__git_zsh_main ()$/;"	f
+__gitcomp	.zsh/functions/git-completion.sh	/^__gitcomp ()$/;"	f
+__gitcomp_direct	.zsh/functions/git-completion.sh	/^__gitcomp_direct ()$/;"	f
+__gitcomp_file	.zsh/functions/git-completion.sh	/^__gitcomp_file ()$/;"	f
+__gitcomp_file_direct	.zsh/functions/git-completion.sh	/^__gitcomp_file_direct ()$/;"	f
+__gitcomp_nl	.zsh/functions/git-completion.sh	/^__gitcomp_nl ()$/;"	f
+__gitcomp_nl_append	.zsh/functions/git-completion.sh	/^__gitcomp_nl_append ()$/;"	f
+__init__	bin/repo	/^    def __init__(self):$/;"	m	class:Trace
+__init__	bin/repo	/^    def __init__(self, requirements):$/;"	m	class:Requirements
+_format_ver	bin/repo	/^    def _format_ver(ver):$/;"	m	class:Requirements
+_git	.zsh/functions/git-completion.sh	/^_git ()$/;"	f
+_path	lib/path.sh	/^_path(){$/;"	f
+_print_output	bin/repo	/^        def _print_output(name, output):$/;"	f	function:run_command	file:
+_setenv	bin/repo	/^def _setenv(key, value, env=None):$/;"	f
+_tmac_complete	lib/tmux.sh	/^_tmac_complete() {$/;"	f
+append_path	lib/functions.sh	/^append_path(){$/;"	f
+append_path	lib/path.sh	/^append_path(){$/;"	f
+assert_all	bin/repo	/^    def assert_all(self):$/;"	m	class:Requirements
+assert_ver	bin/repo	/^    def assert_ver(self, pkg, curr_ver):$/;"	m	class:Requirements
+bind2maps	.zsh/rc.d/keybindings.zsh	/^function bind2maps () {$/;"	f
+check_python_version	bin/repo	/^def check_python_version():$/;"	f
+check_repo_rev	bin/repo	/^def check_repo_rev(dst, rev, repo_verify=True, quiet=False):$/;"	f
+check_repo_verify	bin/repo	/^def check_repo_verify(repo_verify, quiet=False):$/;"	f
+checktor	lib/helpers.sh	/^checktor(){ curl -socks5 -L 127.0.0.1:9050 "$@"; }$/;"	f
+cmdstr	bin/repo	/^def cmdstr(cmd):$/;"	f
+complete	.zsh/functions/git-completion.sh	/^complete ()$/;"	f
+config	bin/qemu-vlan	/^config()$/;"	f
+copy-to-clipboard	.zsh/lib/editor.zsh	/^function copy-to-clipboard {$/;"	f
+copy-to-clipboard	.zsh/rc.d/keybindings.zsh	/^function copy-to-clipboard {$/;"	f
+datetime	lib/functions.sh	/^datetime(){$/;"	f
+deactivate_crypt	lib/helpers.sh	/^deactivate_crypt(){$/;"	f
+deactivate_vgs	lib/helpers.sh	/^deactivate_vgs(){$/;"	f
+decode	bin/repo	/^    def decode(output):$/;"	f	function:run_command	file:
+defaultpath	lib/path.sh	/^defaultpath(){$/;"	f
+detect_container	lib/helpers.sh	/^detect_container(){$/;"	f
+die	.zsh/lib/functions.zsh	/^die()$/;"	f
+die	bin/ipr	/^die()$/;"	f
+die	bin/ips	/^function die {$/;"	f
+die	bin/qemu-vlan	/^die()$/;"	f
+die	lib/functions.sh	/^die(){ $/;"	f
+doiface	bin/ipr	/^doiface()$/;"	f
+dorules	bin/ipr	/^dorules()$/;"	f
+emergency_shell	lib/helpers.sh	/^emergency_shell(){$/;"	f
+envvar	bin/env-setup	/^envvar() {$/;"	f
+envvar	bin/myenv	/^envvar(){$/;"	f
+error	bin/ipr	/^error()$/;"	f
+error	bin/ips	/^function error {$/;"	f
+error	bin/qemu-vlan	/^error()$/;"	f
+error	lib/functions.sh	/^error(){$/;"	f
+exec_command	bin/repo	/^def exec_command(cmd):$/;"	f
+fail	lib/bash-utils.sh	/^fail () {$/;"	f
+from_data	bin/repo	/^    def from_data(cls, data):$/;"	m	class:Requirements
+from_dir	bin/repo	/^    def from_dir(cls, path):$/;"	m	class:Requirements
+from_file	bin/repo	/^    def from_file(cls, path):$/;"	m	class:Requirements
+genpwd	lib/helpers.sh	/^function genpwd { openssl rand -base64 48; }$/;"	f
+get_file	bin/ips	/^function get_file {$/;"	f
+get_hard_ver	bin/repo	/^    def get_hard_ver(self, pkg):$/;"	m	class:Requirements
+get_ip_address	bin/qemu-vlan	/^get_ip_address()$/;"	f
+get_sign	bin/ips	/^function get_sign {$/;"	f
+get_soft_ver	bin/repo	/^    def get_soft_ver(self, pkg):$/;"	m	class:Requirements
+get_target	bin/ips	/^function get_target {$/;"	f
+get_time	bin/ips	/^function get_time {$/;"	f
+get_urls	bin/tmux-urls	/^get_urls() {$/;"	f
+git_grep_for_shell_script_shebangs	lib/bash-utils.sh	/^git_grep_for_shell_script_shebangs () {$/;"	f
+gpg_dir	bin/repo	/^gpg_dir = os.path.join(home_dot_repo, "gnupg")$/;"	v
+have_term	.zsh/rc.d/00-terminfo.zsh	/^have_term () {$/;"	f
+help	bin/repo	/^    help = False$/;"	v	class:_Options
+home_dot_repo	bin/repo	/^home_dot_repo = os.path.join(repo_config_dir, ".repoconfig")$/;"	v
+hwaddr	bin/qemu-vlan	/^hwaddr()$/;"	f
+if_usage	bin/qemu-vlan	/^if_usage()$/;"	f
+ifdown	bin/qemu-vlan	/^ifdown()$/;"	f
+ifup	bin/qemu-vlan	/^ifup()$/;"	f
+info	bin/ipr	/^info()$/;"	f
+info	bin/ips	/^function info {$/;"	f
+info	lib/functions.sh	/^info(){$/;"	f
+insert-datestamp	.zsh/rc.d/keybindings.zsh	/^function insert-datestamp () { LBUFFER+=${(%):-'%D{%Y-%m-%d}'}; }$/;"	f
+ipblock	bin/ips	/^function ipblock {$/;"	f
+ipfilter	bin/ips	/^function ipfilter {$/;"	f
+iptables_dnat	bin/qemu-vlan	/^iptables_dnat()$/;"	f
+iptables_rules	bin/qemu-vlan	/^iptables_rules()$/;"	f
+iptables_snat	bin/qemu-vlan	/^iptables_snat()$/;"	f
+iptables_table	bin/qemu-vlan	/^iptables_table()$/;"	f
+is_installed	lib/functions.sh	/^is_installed(){$/;"	f
+main	bin/repo	/^def main(orig_args):$/;"	f
+make_config	bin/qemu-vlan	/^make_config()$/;"	f
+man	.bashrc.d/10-bash.sh	/^man() {$/;"	f
+match	bin/unpatch	/^match() {$/;"	f
+mod-info	lib/helpers.sh	/^mod-info(){$/;"	f
+mount-info	lib/helpers.sh	/^mount-info(){$/;"	f
+msg	lib/functions.sh	/^msg(){$/;"	f
+myip	lib/helpers.sh	/^myip(){ curl ipinfo.io\/ip; }$/;"	f
+newkey	bin/sign-binpkgs	/^newkey(){$/;"	f
+newline	lib/functions.sh	/^newline(){ printf "\\n"; }$/;"	f
+newline	lib/helpers.sh	/^newline(){ printf '\\n'; }$/;"	f
+ok	lib/functions.sh	/^ok(){$/;"	f
+paste-begin	.zsh/lib/bracketed-paste.zsh	/^function paste-begin {$/;"	f
+paste-end	.zsh/lib/bracketed-paste.zsh	/^function paste-end {$/;"	f
+paste-from-clipboard	.zsh/lib/editor.zsh	/^function paste-from-clipboard {$/;"	f
+paste-from-clipboard	.zsh/rc.d/keybindings.zsh	/^function paste-from-clipboard {$/;"	f
+path	lib/path.sh	/^path(){$/;"	f
+peco-ghq	.zsh/rc.d/keybindings.zsh	/^function peco-ghq () {$/;"	f
+pkg-search	lib/helpers.sh	/^pkg-search(){$/;"	f
+pr-begin	.zsh/lib/functions.zsh	/^pr-begin()$/;"	f
+pr-end	.zsh/lib/functions.zsh	/^pr-end()$/;"	f
+pr-error	.zsh/lib/functions.zsh	/^pr-error()$/;"	f
+pr-info	.zsh/lib/functions.zsh	/^pr-info()$/;"	f
+pr-line	bin/termcolors	/^function pr-line {$/;"	f
+pr-warn	.zsh/lib/functions.zsh	/^pr-warn()$/;"	f
+prepend_path	lib/functions.sh	/^prepend_path(){$/;"	f
+prepend_path	lib/path.sh	/^prepend_path(){$/;"	f
+print	bin/repo	/^    def print(self, *args, **kwargs):$/;"	m	class:Trace
+print-screen	.zsh/lib/key-bindings.zsh	/^	function print-screen {$/;"	f
+pstrip	bin/unpatch	/^pstrip() {$/;"	f
+qemu_vlan_make_bridge	bin/qemu-vlan	/^qemu_vlan_make_bridge()$/;"	f
+qemu_vlan_make_config	bin/qemu-vlan	/^qemu_vlan_make_config()$/;"	f
+qemu_vlan_make_dhcpd_config	bin/qemu-vlan	/^qemu_vlan_make_dhcpd_config()$/;"	f
+qemu_vlan_make_dhcpd_server	bin/qemu-vlan	/^qemu_vlan_make_dhcpd_server()$/;"	f
+qemu_vlan_make_dnsmasq_config	bin/qemu-vlan	/^qemu_vlan_make_dnsmasq_config()$/;"	f
+qemu_vlan_make_dnsmasq_server	bin/qemu-vlan	/^qemu_vlan_make_dnsmasq_server()$/;"	f
+qemu_vlan_make_hwaddr	bin/qemu-vlan	/^qemu_vlan_make_hwaddr()$/;"	f
+qemu_vlan_save_config	bin/qemu-vlan	/^qemu_vlan_save_config()$/;"	f
+reexec	bin/repo	/^    def reexec(prog):$/;"	f	function:check_python_version	file:
+reject_all_arguments	lib/bash-utils.sh	/^alias reject_all_arguments='$/;"	a
+reject_options	lib/bash-utils.sh	/^alias reject_options='$/;"	a
+remove_path	lib/functions.sh	/^remove_path() {$/;"	f
+remove_path	lib/path.sh	/^remove_path() {$/;"	f
+repo_config_dir	bin/repo	/^repo_config_dir = os.getenv("REPO_CONFIG_DIR", os.path.expanduser("~"))$/;"	v
+repodir	bin/repo	/^repodir = ".repo"  # name of repo's private directory$/;"	v
+resolve	bin/repo	/^    def resolve(committish):$/;"	f	function:resolve_repo_rev	file:
+resolve_repo_rev	bin/repo	/^def resolve_repo_rev(cwd, committish):$/;"	f
+run-term	.zsh/lib/key-bindings.zsh	/^	function run-term { screen }$/;"	f
+run-term	.zsh/lib/key-bindings.zsh	/^	function run-term { urxvtc }$/;"	f
+run_command	bin/repo	/^def run_command(cmd, **kwargs):$/;"	f
+run_git	bin/repo	/^def run_git(*args, **kwargs):$/;"	f
+set	bin/repo	/^    def set(self, value):$/;"	m	class:Trace
+set_title	.zsh/rc.d/runtitle.zsh	/^	set_title() {$/;"	f
+sprunge	lib/helpers.sh	/^sprunge(){$/;"	f
+start	bin/qemu-vlan	/^start()$/;"	f
+start_pre	bin/qemu-vlan	/^start_pre()$/;"	f
+stop	bin/qemu-vlan	/^stop()$/;"	f
+stop_pre	bin/qemu-vlan	/^stop_pre()$/;"	f
+style bg	.tmux.conf	/^set -g status-style bg=default$/;"	k
+style fg	.tmux.conf	/^set -g pane-active-border-style fg=default,bg=default$/;"	k
+sudo-command-line	.zsh/rc.d/keybindings.zsh	/^function sudo-command-line () {$/;"	f
+timestamp	lib/functions.sh	/^timestamp(){$/;"	f
+tmac	lib/tmux.sh	/^tmac () {$/;"	f
+trace	bin/repo	/^trace = Trace()$/;"	v
+usage	bin/ipr	/^usage()$/;"	f
+usage	bin/ips	/^function usage {$/;"	f
+usage	bin/qemu-vlan	/^usage()$/;"	f
+verify_rev	bin/repo	/^def verify_rev(cwd, remote_ref, rev, quiet):$/;"	f
+version	bin/repo	/^    version = False$/;"	v	class:_Options
+warn	bin/ipr	/^warn()$/;"	f
+warn	bin/qemu-vlan	/^warn()$/;"	f
+warn	lib/functions.sh	/^warn(){$/;"	f
+x	lib/bash-utils.sh	/^x () {$/;"	f
+xev-key-code	lib/helpers.sh	/^xev-key-code(){$/;"	f
+yesno	.zsh/lib/functions.zsh	/^yesno()$/;"	f
+yesno	bin/qemu-vlan	/^yesno()$/;"	f
+yesno	lib/functions.sh	/^yesno(){$/;"	f
+zle-line-finish	.zsh/rc.d/keybindings.zsh	/^    function zle-line-finish () {$/;"	f
+zle-line-init	.zsh/rc.d/keybindings.zsh	/^    function zle-line-init () {$/;"	f
+zsh_autosuggestions	.zsh/rc.d/10-zsh-autosuggestions.zsh	/^zsh_autosuggestions () {$/;"	f
+zsh_syntax_highlighting	.zsh/rc.d/15-zsh-syntax-highlighting.zsh	/^zsh_syntax_highlighting () {$/;"	f
