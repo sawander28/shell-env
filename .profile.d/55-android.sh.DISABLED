@@ -1,7 +1,7 @@
 
 . ~/lib/functions.sh
 
-export ANDROID_SDK=/home/wandsas/android/sdk
-export ANDROID_ROOT=$ANDROID_SDK
-prepend_path $ANDROID_SDK/cmdline-tools/bin
-prepend_path $ANDROID_SDK/platform-tools
+export ANDROID_HOME=$HOME/android
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+prepend_path $ANDROID_HOME/cmdline-tools/bin
+prepend_path $ANDROID_HOME/platform-tools
