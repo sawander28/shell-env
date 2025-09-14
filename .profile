@@ -1,4 +1,4 @@
-# POSIX variables
+:# POSIX variables
 # http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap08.html#tag_08_03
 : ${LANG:=en_US.UTF-8}
 : ${LC_COLLATE:=C}
@@ -24,7 +24,6 @@ export XDG_DATA_DIRS=${XDG_DATA_HOME}:${XDG_DATA_DIRS:-/usr/local/share:/usr/sha
 : ${SVDIR:=$HOME/service}
 export SVDIR
 
-export XAUTHORITY=~/.config/xorg/Xauthority
 # Default user PATH
 export PATH="~/bin:~/.local/bin:/usr/local/bin:/usr/bin"
 

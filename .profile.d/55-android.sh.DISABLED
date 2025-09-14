@@ -1,5 +1,5 @@
 
-. ~/lib/functions.sh
+. /usr/local/lib/functions.sh
 
 export ANDROID_HOME=$HOME/android
 export ANDROID_SDK_ROOT=$ANDROID_HOME

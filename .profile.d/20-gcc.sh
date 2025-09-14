@@ -1,3 +1,5 @@
-export GCC_COLORS="error=01;31:warning=01;35:locus=01:quote=01:path=01;36"
+# nfs-cache
 export CCACHE_HOME="/srv/nfs/ccache"
-export MAKEOPTS="^-j$(($(getconf _NPROCESSORS_ONLN)+1)) --no-print-directory"
+
+export GCC_COLORS="error=01;31:warning=01;35:locus=01:quote=01:path=01;36"
+export MAKEOPTS="^-j$(($(getconf _NPROCESSORS_ONLN)+1)) --no-print-directory":w:
