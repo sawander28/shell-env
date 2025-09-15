@@ -1,0 +1,11 @@
+apparmor
+mc lsof tree
+mutt isync msmtp
+sway swayidle swaylock wmenu Waybar lxde alacritty foot
+pipewire mpd mpv mpc ncmpcpp playerctl
+mesa-dri mesa-vdpau mesa-vaapi amdvlk mesa-vulkan-radeon xf86-video-amdgpu
+polkit-gnome gnome-keyring pinentry pinentry-gnome gnome-ssh-askpass
+NetworkManager network-manager-applet
+dbus dbus-elogind dbus-libs dbus-x11 turnstiled
+xdg-desktop-portal-wlr xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+qemu qemu-user-static binfmt-support proot podman firejail bubblewrap

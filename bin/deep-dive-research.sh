@@ -18,4 +18,3 @@ sudo xorriso -as mkisofs \
   -no-emul-boot \
   -o ubuntu-24.04-custom.iso \
   image
-
