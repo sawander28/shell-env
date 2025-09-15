@@ -9,11 +9,11 @@ export  EDITOR VISUAL PAGER
 : ${XDG_CONFIG_HOME:=$HOME/.config}
 : ${XDG_CACHE_HOME:=$HOME/.cache}
 : ${XDG_DATA_HOME:=$HOME/.local/share}
-: ${XDG_STATE_HOME:=$HOME/.local/state}
+#: ${XDG_STATE_HOME:=$HOME/.local/state}
 : ${XDG_RUNTIME_DIR:=/run/user/$(id -u)}
 export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME XDG_RUNTIME_DIR
 
-export XDG_DATA_DIRS=${XDG_DATA_HOME}:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}
+#export XDG_DATA_DIRS=${XDG_DATA_HOME}:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}
 export SVDIR=$HOME/service
 
 # Default user PATH
