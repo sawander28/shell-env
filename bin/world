@@ -1,6 +1,6 @@
 apparmor
-linux-lts linux-lts-headers zfs lzop pv mbuffer
-mc lsof tree openbsd-netcat bind-utils
+linux-lts linux-lts-headers zfs lzop pv mbuffer gptfdisk
+nftables mc lsof tree openbsd-netcat bind-utils terminus-font
 mutt isync msmtp
 # sway
 sway swayidle swaylock wmenu Waybar lxde alacritty foot mousepad gvfs
