@@ -1,5 +1,5 @@
 apparmor
-linux-lts linux-lts-headers zfs lzop pv mbuffer gptfdisk
+linux-lts linux-lts-headers zfs lzop pv mbuffer gptfdisk htop
 nftables mc lsof tree openbsd-netcat bind-utils terminus-font
 mutt isync msmtp
 # sway
