@@ -32,11 +32,6 @@ alias gt='git tag -l'
 # nmap portscan
 portscan(){ nmap -Pn $@; }
 
-# my external ip (WAN)
-myip(){ curl ipinfo.io/ip; }
-
 # get linux kernel current release versions
 finger_banner(){ curl -sL https://www.kernel.org/finger_banner; }
 
-# check tor is running
-checktor(){ curl --proxy socks5h://127.0.0.1:9050 https://check.torproject.org/api/ip; }
