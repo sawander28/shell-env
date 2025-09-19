@@ -1,7 +1,7 @@
 apparmor
 linux-lts linux-lts-headers zfs lzop pv mbuffer gptfdisk htop
 nftables mc lsof tree openbsd-netcat bind-utils terminus-font
-mutt isync msmtp
+mutt isync msmtp lynx
 # sway
 sway swayidle swaylock wmenu Waybar lxde alacritty foot mousepad gvfs
 pipewire mpd mpv mpc ncmpcpp playerctl syncthing file-roller pqiv
