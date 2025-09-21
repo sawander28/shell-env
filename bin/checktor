@@ -6,9 +6,6 @@ info "$(hostname) $PRETTY_NAME"
 msg "IPv4"
 curl -x socks5h://openwrt.lan:9050 https://check.torproject.org/api/ip
 printf "\n"
-msg "IPv6"
-curl -x socks5h://[fdbd:1e60:35db::1]:9050 https://check.torproject.org/api/ip
-printf "\n"
 msg "MyIP"
 curl ipinfo.io/ip
 printf "\n"

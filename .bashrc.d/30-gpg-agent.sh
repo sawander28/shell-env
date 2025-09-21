@@ -2,6 +2,7 @@
 #          --list-components
 #          --reload -R
 #          --kill -K
+
 reloadagent(){
     gpg-connect-agent reloadagent /bye >/dev/null 2>&1
 }

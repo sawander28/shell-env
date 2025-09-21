@@ -1,23 +1,17 @@
-: ${LANG:=en_US.UTF-8}
-: ${LC_COLLATE:=C}
-export LANG LC_COLLATE
-: ${EDITOR:=vim}
-: ${VISUAL:=vim}
-: ${PAGER:=less}
-export  EDITOR VISUAL PAGER
+export LANG=en_US.UTF-8
+export LC_COLLATE=C
+export EDITOR=vim
+export PAGER=less
 
-: ${XDG_CONFIG_HOME:=$HOME/.config}
-: ${XDG_CACHE_HOME:=$HOME/.cache}
-: ${XDG_DATA_HOME:=$HOME/.local/share}
-#: ${XDG_STATE_HOME:=$HOME/.local/state}
-: ${XDG_RUNTIME_DIR:=/run/user/$(id -u)}
-export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME XDG_RUNTIME_DIR
-
-#export XDG_DATA_DIRS=${XDG_DATA_HOME}:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}
+# Runit user services
 export SVDIR=$HOME/service
+export PATH=~/bin:/usr/local/bin:/usr/bin
 
-# Default user PATH
-export PATH="~/bin:~/.local/bin:/usr/local/bin:/usr/bin"
+: ${XDG_RUNTIME_DIR:=/run/user/$(id -u)}
+: ${DBUS_SESSION_BUS_ADDRESS:=unix:path=$XDG_RUNTIME_DIR/bus}
+export XDG_RUNTIME_DIR DBUS_SESSION_BUS_ADDRESS
+export XDG_DESKTOP_SESSION=sway
+export XDG_SESSION_TYPE=wayland
 
 if [ -d ~/.profile.d ]; then
   for sh in ~/.profile.d/*.sh; do
@@ -26,4 +20,4 @@ if [ -d ~/.profile.d ]; then
   unset sh
 fi
 
-[ -n $BASH_VERSION ] && [ -f ~/.bashrc ] && . ~/.bashrc
+[ -f ~/.bashrc ] && . ~/.bashrc
