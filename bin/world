@@ -1,21 +1,12 @@
 apparmor
 linux-lts linux-lts-headers zfs lzop pv mbuffer gptfdisk htop
 nftables mc lsof tree openbsd-netcat bind-utils terminus-font
-mutt isync msmtp lynx
-# sway
+mutt isync msmtp lynx minicom lzop pv
 sway swayidle swaylock wmenu Waybar lxde alacritty foot mousepad gvfs
 pipewire mpd mpv mpc ncmpcpp playerctl syncthing file-roller pqiv
 mesa-dri mesa-vdpau mesa-vaapi amdvlk mesa-vulkan-radeon xf86-video-amdgpu
 polkit-gnome gnome-keyring pinentry pinentry-gnome gnome-ssh-askpass
-NetworkManager network-manager-applet
-dbus dbus-elogind dbus-libs dbus-x11 turnstiled
+NetworkManager network-manager-applet virt-viewer
+dbus dbus-elogind dbus-libs dbus-x11 turnstile
 xdg-desktop-portal-wlr xdg-desktop-portal-gnome xdg-desktop-portal-gtk
-# Qemu/KVM podman
 qemu qemu-user-static binfmt-support proot podman firejail bubblewrap
-virt-viewer
-# GNUGCC
-gcc gdb-multiarch ccache autoconf automake flex bison cmake meson ninja
-# LLVM/Clang
-clang llvm libcxx libcxxabi llvm-libunwind lld lldb
-compiler-rt clang-tools-extra clang-analyzer libomp
-llvm17-doc llvm17-cross-tools

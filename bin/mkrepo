@@ -2,8 +2,7 @@
 
 script="${0##*/}"
 
-. /home/wandsas/lib/colors.sh
-. /home/wandsas/lib/functions.sh
+. /usr/local/lib/functions.sh
 
 # upstream
 GIT_USER="git"
@@ -25,7 +24,7 @@ fi
 
 # Test if repo already exist
 if $(ssh -t ${GIT_USER}@${GIT_HOST} "test -d ${GIT_ROOT}/${REPO_NAME}" >/dev/null 2>&1); then
-  warn "Repo $bocyan$REPO$reset already exists, aborting"
+  warn "Repo $REPO already exists, aborting"
   exit 128
 fi
 
@@ -38,7 +37,7 @@ if [ $STATUS -ne 0 ]; then
   error "Creating repo $bocyan$REPO$reset on $GIT_HOST failed with error $STATUS"
   exit $STATUS
 else
-  info "Created repo $bocyan$REPO$reset on $bocyan$GIT_HOST$reset successfully"
+  info "Created repo $REPO on $GIT_HOST successfully"
 fi
 
 # local repo version controlled -> add remote
@@ -49,23 +48,23 @@ if [ -d "${REPO_BASEDIR}/.git" ]; then
   git remote add origin ${GIT_UPSTREAM}/${REPO_NAME}
   
   cd "${PREV}"
-  info "Found existing repo $bocyan$REPO$reset"
+  info "Found existing repo $REPO"
   info "Changed remote origin to upstream"
-  info "Added remote origin $bocyan${GIT_UPSTREAM}$reset"
+  info "Added remote origin ${GIT_UPSTREAM}"
 else
-  info "No version data found for current repo $bocyan$REPO$reset"
-  info "Initialized new empty repo $bocyan$REPO$reset"
+  info "No version data found for current repo $REPO"
+  info "Initialized new empty repo $REPO"
   tmpdir="$(mktemp -d /tmp/${REPO}.XXXXXX)"
   git clone "${GIT_UPSTREAM}/${REPO_NAME}" "${tmpdir}/${REPO}" >/dev/null 2>&1
   STATUS="$?"
   cp -Rf "${tmpdir}/${REPO}" "${REPO_BASEDIR}"
   rm -Rf "${tmpdir}"
-  info "Git repo $bocyan$REPO$reset initialized."
+  info "Git repo $REPO$ initialized."
 fi
 
 if [ ${STATUS} -eq 0 ]; then
-  info "Script $bocyan$script$reset finished successfully"
+  info "$script finished successfully"
 else
-  error "Script $bocyan$script$reset finished with error $bocyan$STATUS$reset"
+  error "$script finished with error $STATUS"
 fi
 exit ${STATUS}

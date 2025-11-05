@@ -69,3 +69,7 @@ timestamp(){
 is_installed(){
     test command -v "$1"
 }
+
+is_mounted(){
+    mountpoint -q "$1" >/dev/null
+}
